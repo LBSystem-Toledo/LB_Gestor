@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:cv="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="LB_Gestor.Views.VendasAnoPage"
+             Title="VENDAS ANO"
+             BackgroundColor="{StaticResource Key=preto_lb}">
+    <Frame HasShadow="True"
+           BackgroundColor="{StaticResource Key=fundo_form}"
+           CornerRadius="5"
+           Margin="10,0,10,0"
+           Padding="5"
+           HorizontalOptions="FillAndExpand"
+           VerticalOptions="FillAndExpand">
+        <cv:ChartView VerticalOptions="FillAndExpand"
+                      HorizontalOptions="FillAndExpand"
+                      Chart="{Binding ChartVendas}"/>
+    </Frame>
+</ContentPage>

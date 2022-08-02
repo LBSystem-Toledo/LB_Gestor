@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:dxc="http://schemas.devexpress.com/xamarin/2014/forms/charts"
+             xmlns:local="clr-namespace:LB_Gestor"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="LB_Gestor.Views.RecebimentoPortadorPage"
+             Title="RECEBIMENTOS - PORTADOR"
+             BackgroundColor="{StaticResource Key=preto_lb}">
+    <Frame HasShadow="True"
+           BackgroundColor="{StaticResource Key=fundo_form}"
+           CornerRadius="5"
+           Margin="10,0,10,0"
+           Padding="5"
+           HorizontalOptions="FillAndExpand"
+           VerticalOptions="FillAndExpand">
+        <Grid RowDefinitions="Auto,*">
+            <Frame HasShadow="True"
+                   BackgroundColor="{StaticResource Key=laranja_lb}"
+                   CornerRadius="5"
+                   Margin="0"
+                   Padding="0">
+                <local:MonthYearPickerView x:Name="myFiltro"
+                                           Date="{Binding DtFiltro}"
+                                           HorizontalOptions="CenterAndExpand"
+                                           VerticalOptions="Center"/>
+            </Frame>
+            <dxc:PieChartView Grid.Row="1">
+                <dxc:PieChartView.Series>
+                    <dxc:DonutSeries>
+                        <dxc:DonutSeries.Data>
+                            <dxc:PieSeriesDataAdapter DataSource="{Binding Portadores}"
+                                                      LabelDataMember="Portador"
+                                                      ValueDataMember="Valor"/>
+                        </dxc:DonutSeries.Data>
+                        <dxc:DonutSeries.Label>
+                            <dxc:PieSeriesLabel Position="TwoColumns"
+                                                TextPattern="{}{VP}%"/>
+                        </dxc:DonutSeries.Label>
+                        <dxc:DonutSeries.CenterLabel>
+                            <dxc:PieCenterTextLabel TextPattern="{}Total&#x0a;{TV}" 
+                                                    AutoSizeText="True"/>
+                        </dxc:DonutSeries.CenterLabel>
+                        <dxc:DonutSeries.HintOptions>
+                            <dxc:PieSeriesHintOptions PointTextPattern="{}{L}: {V}"/>
+                        </dxc:DonutSeries.HintOptions>
+                    </dxc:DonutSeries>
+                </dxc:PieChartView.Series>
+                <dxc:PieChartView.Legend>
+                    <dxc:Legend VerticalPosition="TopOutside"
+                                Orientation="LeftToRight"
+                                HorizontalPosition="Center"/>
+                </dxc:PieChartView.Legend>
+                <dxc:PieChartView.Hint>
+                    <dxc:PieHint Enabled="True"/>
+                </dxc:PieChartView.Hint>
+            </dxc:PieChartView>
+        </Grid>
+    </Frame>
+</ContentPage>

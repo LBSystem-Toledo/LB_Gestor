@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="LB_Gestor.Views.SelecionarOperacaoPage"
+             Visual="Material"
+             Title="SELECIONAR OPERAÇÃO"
+             BackgroundColor="{StaticResource Key=preto_lb}">
+    <Frame HasShadow="True"
+           BackgroundColor="{StaticResource Key=fundo_form}"
+           CornerRadius="5"
+           Margin="5"
+           Padding="5"
+           HorizontalOptions="FillAndExpand"
+           VerticalOptions="CenterAndExpand">
+        <Grid HorizontalOptions="FillAndExpand"
+              VerticalOptions="FillAndExpand"
+              RowDefinitions="120,*">
+            <StackLayout Orientation="Horizontal">
+                <Image Source="icone_Transparente.png"
+                       Aspect="AspectFit"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Start"
+                       Margin="10,0,0,0"/>
+                <Label HorizontalOptions="StartAndExpand"
+                        VerticalOptions="Center"
+                        FontSize="Large"
+                        FontFamily="SANSATION_BOLD">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="LB"
+                                    FontSize="30"
+                                    TextColor="{StaticResource Key=laranja_lb}"/>
+                            <Span Text=" GESTOR"
+                                    FontSize="24"
+                                    TextColor="{StaticResource Key=preto_lb}"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </StackLayout>
+            <StackLayout Orientation="Vertical"
+                         Padding="5, 15,5,15"
+                         Grid.Row="1"
+                         HorizontalOptions="FillAndExpand"
+                         VerticalOptions="Center">
+                <Button Text="PROVISIONAR DUPLICATA"
+                        HeightRequest="80"
+                        BackgroundColor="{StaticResource Key=laranja_lb}"
+                        Command="{Binding ProvisionarDupCommand}"/>
+                <Button Text="QUITAR DUPLICATA"
+                        HeightRequest="80"
+                        BackgroundColor="{StaticResource Key=laranja_lb}"
+                        Command="{Binding QuitarDuplicataCommand}"/>
+                <Button Text="GRAVAR CAIXA"
+                        HeightRequest="80"
+                        BackgroundColor="{StaticResource Key=laranja_lb}"
+                        Command="{Binding GravarCaixaCommand}"/>
+            </StackLayout>
+        </Grid>
+    </Frame>
+</ContentPage>

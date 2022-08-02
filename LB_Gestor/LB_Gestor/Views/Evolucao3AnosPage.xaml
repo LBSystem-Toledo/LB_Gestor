@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:dxc="http://schemas.devexpress.com/xamarin/2014/forms/charts"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="LB_Gestor.Views.Evolucao3AnosPage"
+             Title="EVOLUÇÃO TRÊS ANOS"
+             Visual="Material"
+             BackgroundColor="{StaticResource preto_lb}">
+    <Frame HasShadow="True"
+           BackgroundColor="{StaticResource fundo_form}"
+           CornerRadius="5"
+           Margin="10,0,10,0"
+           Padding="5"
+           HorizontalOptions="FillAndExpand"
+           VerticalOptions="FillAndExpand">
+        <dxc:ChartView Rotated="True">
+            <dxc:ChartView.Series>
+                <dxc:AreaSeries DisplayName="{Binding GdpValueAnoAnt1.TituloSerie}"
+                                            MarkersVisible="True">
+                    <dxc:AreaSeries.Data>
+                        <dxc:SeriesDataAdapter DataSource="{Binding GdpValueAnoAnt1.Values}"
+                                                           ArgumentDataMember="EixoX">
+                            <dxc:ValueDataMember Type="Value" Member="Valor"/>
+                        </dxc:SeriesDataAdapter>
+                    </dxc:AreaSeries.Data>
+                </dxc:AreaSeries>
+                <dxc:AreaSeries DisplayName="{Binding GdpValueAnoAnt.TituloSerie}"
+                                            MarkersVisible="True">
+                    <dxc:AreaSeries.Data>
+                        <dxc:SeriesDataAdapter DataSource="{Binding GdpValueAnoAnt.Values}"
+                                                           ArgumentDataMember="EixoX">
+                            <dxc:ValueDataMember Type="Value" Member="Valor"/>
+                        </dxc:SeriesDataAdapter>
+                    </dxc:AreaSeries.Data>
+                </dxc:AreaSeries>
+                <dxc:AreaSeries DisplayName="{Binding GdpValueAnoAtual.TituloSerie}"
+                                MarkersVisible="True">
+                    <dxc:AreaSeries.Data>
+                        <dxc:SeriesDataAdapter DataSource="{Binding GdpValueAnoAtual.Values}"
+                                               ArgumentDataMember="EixoX">
+                            <dxc:ValueDataMember Type="Value" Member="Valor"/>
+                        </dxc:SeriesDataAdapter>
+                    </dxc:AreaSeries.Data>
+                </dxc:AreaSeries>
+            </dxc:ChartView.Series>
+            <dxc:ChartView.AxisX>
+                <dxc:QualitativeAxisX/>
+            </dxc:ChartView.AxisX>
+            <dxc:ChartView.Legend>
+                <dxc:Legend VerticalPosition="TopOutside" 
+                    HorizontalPosition="Center" 
+                    Orientation="LeftToRight"/>
+            </dxc:ChartView.Legend>
+            <dxc:ChartView.Hint>
+                <dxc:Hint Enabled="True"/>
+            </dxc:ChartView.Hint>
+        </dxc:ChartView>
+    </Frame>
+</ContentPage>

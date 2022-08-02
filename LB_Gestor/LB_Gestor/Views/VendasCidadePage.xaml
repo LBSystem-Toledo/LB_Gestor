@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:local="clr-namespace:LB_Gestor"
+             xmlns:cv="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="LB_Gestor.Views.VendasCidadePage"
+             Title="VENDAS - CIDADE"
+             BackgroundColor="{StaticResource Key=preto_lb}">
+    <Frame HasShadow="True"
+           BackgroundColor="{StaticResource Key=fundo_form}"
+           CornerRadius="5"
+           Margin="10,0,10,0"
+           Padding="5"
+           HorizontalOptions="FillAndExpand"
+           VerticalOptions="FillAndExpand">
+        <Grid RowDefinitions="Auto,*">
+            <Frame HasShadow="True"
+                   BackgroundColor="{StaticResource Key=laranja_lb}"
+                   CornerRadius="5"
+                   Margin="0"
+                   Padding="0">
+                <local:MonthYearPickerView x:Name="myFiltro"
+                                           Date="{Binding DtFiltro}"
+                                           HorizontalOptions="CenterAndExpand"
+                                           VerticalOptions="Center"/>
+            </Frame>
+            <cv:ChartView VerticalOptions="FillAndExpand"
+                          HorizontalOptions="FillAndExpand"
+                          Chart="{Binding ChartVendas}"
+                          Grid.Row="1"/>
+        </Grid>
+    </Frame>
+</ContentPage>

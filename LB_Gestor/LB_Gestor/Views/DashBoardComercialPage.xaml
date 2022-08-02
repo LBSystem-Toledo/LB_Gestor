@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="LB_Gestor.Views.DashBoardComercialPage"
+             Title="COMERCIAL"
+             Visual="Material"
+             BackgroundColor="{StaticResource preto_lb}">
+    <Frame HasShadow="True"
+           BackgroundColor="{StaticResource fundo_form}"
+           CornerRadius="5"
+           Margin="10,0,10,0"
+           Padding="5"
+           HorizontalOptions="FillAndExpand"
+           VerticalOptions="FillAndExpand">
+        <Grid HorizontalOptions="FillAndExpand"
+              VerticalOptions="FillAndExpand"
+              Margin="2"
+              ColumnSpacing="3"
+              RowSpacing="3"
+              RowDefinitions="*,*,*,*"
+              ColumnDefinitions="*,*">
+            <Frame HasShadow="True"
+                   BackgroundColor="{StaticResource laranja_lb}"
+                   CornerRadius="10"
+                   Margin="5"
+                   Padding="5"
+                   Visual="Material"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand">
+                <StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding KpiVendasCommand}"/>
+                    </StackLayout.GestureRecognizers>
+                    <Label Text="KPI VENDAS"
+                           TextColor="{StaticResource fundo_form}"
+                           FontSize="Subtitle"
+                           FontAttributes="Bold"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </StackLayout>
+            </Frame>
+            <Frame HasShadow="True"
+                   BackgroundColor="{StaticResource laranja_lb}"
+                   CornerRadius="10"
+                   Margin="5"
+                   Padding="5"
+                   Visual="Material"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"
+                   Grid.Column="1">
+                <StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding VendasPortadorCommand}"/>
+                    </StackLayout.GestureRecognizers>
+                    <Label Text="VENDAS PORTADOR"
+                           TextColor="{StaticResource fundo_form}"
+                           FontSize="Subtitle"
+                           FontAttributes="Bold"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </StackLayout>
+            </Frame>
+            <Frame HasShadow="True"
+                   BackgroundColor="{StaticResource laranja_lb}"
+                   CornerRadius="10"
+                   Margin="5"
+                   Padding="5"
+                   Visual="Material"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"
+                   Grid.Row="1">
+                <StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding VendasMesCommand}"/>
+                    </StackLayout.GestureRecognizers>
+                    <Label Text="VENDAS MÊS"
+                           TextColor="{StaticResource fundo_form}"
+                           FontSize="Subtitle"
+                           FontAttributes="Bold"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </StackLayout>
+            </Frame>
+            <Frame HasShadow="True"
+                   BackgroundColor="{StaticResource laranja_lb}"
+                   CornerRadius="10"
+                   Margin="5"
+                   Padding="5"
+                   Visual="Material"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"
+                   Grid.Row="1"
+                   Grid.Column="1">
+                <StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding VendasAnoCommand}"/>
+                    </StackLayout.GestureRecognizers>
+                    <Label Text="VENDAS ANO"
+                           TextColor="{StaticResource fundo_form}"
+                           FontSize="Subtitle"
+                           FontAttributes="Bold"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </StackLayout>
+            </Frame>
+            <Frame HasShadow="True"
+                   BackgroundColor="{StaticResource laranja_lb}"
+                   CornerRadius="10"
+                   Margin="5"
+                   Padding="5"
+                   Visual="Material"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"
+                   Grid.Row="2">
+                <StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding VendasCidadeCommand}"/>
+                    </StackLayout.GestureRecognizers>
+                    <Label Text="VENDAS CIDADE"
+                           TextColor="{StaticResource fundo_form}"
+                           FontSize="Subtitle"
+                           FontAttributes="Bold"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </StackLayout>
+            </Frame>
+            <Frame HasShadow="True"
+                   BackgroundColor="{StaticResource laranja_lb}"
+                   CornerRadius="10"
+                   Margin="5"
+                   Padding="5"
+                   Visual="Material"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"
+                   Grid.Row="2"
+                   Grid.Column="1">
+                <StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding VendasGrupoCommand}"/>
+                    </StackLayout.GestureRecognizers>
+                    <Label Text="VENDAS GRUPO"
+                           TextColor="{StaticResource fundo_form}"
+                           FontSize="Subtitle"
+                           FontAttributes="Bold"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </StackLayout>
+            </Frame>
+            <Frame HasShadow="True"
+                   BackgroundColor="{StaticResource laranja_lb}"
+                   CornerRadius="10"
+                   Margin="5"
+                   Padding="5"
+                   Visual="Material"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"
+                   Grid.Row="3">
+                <StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding VendasVendedorCommand}"/>
+                    </StackLayout.GestureRecognizers>
+                    <Label Text="VENDAS VENDEDOR"
+                           TextColor="{StaticResource fundo_form}"
+                           FontSize="Subtitle"
+                           FontAttributes="Bold"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </StackLayout>
+            </Frame>
+            <Frame HasShadow="True"
+                   BackgroundColor="{StaticResource laranja_lb}"
+                   CornerRadius="10"
+                   Margin="5"
+                   Padding="5"
+                   Visual="Material"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"
+                   Grid.Row="3"
+                   Grid.Column="1">
+                <StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding RecebimentoVendedorCommand}"/>
+                    </StackLayout.GestureRecognizers>
+                    <Label Text="RECEBIMENTOS VENDEDOR"
+                           TextColor="{StaticResource fundo_form}"
+                           FontSize="Subtitle"
+                           FontAttributes="Bold"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </Frame>
+</ContentPage>

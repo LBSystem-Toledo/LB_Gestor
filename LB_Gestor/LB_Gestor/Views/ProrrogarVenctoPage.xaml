@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:converterPack="clr-namespace:Xamarin.Forms.ConvertersPack;assembly=Xamarin.Forms.ConvertersPack" 
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="LB_Gestor.Views.ProrrogarVenctoPage"
+             Title="PROGRAMAR VENCIMENTO"
+             BackgroundColor="{StaticResource Key=preto_lb}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converterPack:CurrencyConverter x:Key="CurrencyConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Frame HasShadow="True"
+           BackgroundColor="{StaticResource Key=fundo_form}"
+           CornerRadius="5"
+           Margin="5"
+           Padding="5"
+           HorizontalOptions="FillAndExpand"
+           VerticalOptions="CenterAndExpand">
+        <StackLayout Orientation="Vertical">
+            <Frame HasShadow="True"
+                   BackgroundColor="{StaticResource Key=fundo_form}"
+                   BorderColor="{StaticResource Key=laranja_lb}"
+                   CornerRadius="5"
+                   Margin="0"
+                   Padding="0"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand">
+                <StackLayout Orientation="Vertical"
+                             Padding="5">
+                    <Label Text="{Binding Duplicata.Nm_clifor}"
+                           TextColor="{StaticResource Key=preto_lb}"
+                           FontSize="Body"
+                           FontAttributes="Bold"
+                           HorizontalOptions="StartAndExpand"
+                           HorizontalTextAlignment="Start"
+                           VerticalTextAlignment="Center"/>
+                    <Grid ColumnDefinitions="*,*,*">
+                        <StackLayout Orientation="Vertical"
+                                     HorizontalOptions="FillAndExpand"
+                                     VerticalOptions="Fill">
+                            <Label Text="Emissão"
+                                   TextColor="Gray"
+                                   FontSize="10"
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Start"
+                                   VerticalTextAlignment="Center"/>
+                            <Label Text="{Binding Duplicata.Dt_emissao, StringFormat='{0:dd/MM/yyyy}'}"
+                                   TextColor="{StaticResource Key=preto_lb}"
+                                   FontSize="14"
+                                   HorizontalTextAlignment="Start"
+                                   VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical"
+                                     HorizontalOptions="FillAndExpand"
+                                     VerticalOptions="Fill"
+                                     Grid.Column="1">
+                            <Label Text="Vencimento"
+                                   TextColor="Gray"
+                                   FontSize="10"
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Start"
+                                   VerticalTextAlignment="Center"/>
+                            <Label Text="{Binding Duplicata.Dt_vencto, StringFormat='{0:dd/MM/yyyy}'}"
+                                   TextColor="{StaticResource Key=preto_lb}"
+                                   FontSize="14"
+                                   HorizontalTextAlignment="Start"
+                                   VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical"
+                                     HorizontalOptions="FillAndExpand"
+                                     VerticalOptions="Fill"
+                                     Grid.Column="2">
+                            <Label Text="Receber"
+                                   TextColor="Gray"
+                                   FontSize="10"
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Start"
+                                   VerticalTextAlignment="Center"/>
+                            <Label Text="{Binding Duplicata.Vl_atual, StringFormat='{0:c}'}"
+                                   TextColor="{StaticResource Key=preto_lb}"
+                                   FontSize="14"
+                                   HorizontalTextAlignment="Start"
+                                   VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+            </Frame>
+            <StackLayout Orientation="Vertical">
+                <Label Text="Data Programada"
+                       TextColor="Gray"
+                       FontSize="Caption"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Start"
+                       VerticalTextAlignment="Start"/>
+                <DatePicker Format="dd/MM/yyyy"
+                            HorizontalOptions="FillAndExpand"
+                            Date="{Binding Duplicata.Dt_prorrogacao}"/>
+            </StackLayout>
+            <Button x:Name="btnConfirmar"
+                        Text="CONFIRMAR"
+                        BackgroundColor="{StaticResource Key=laranja_lb}"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center"
+                        CornerRadius="10"
+                        Command="{Binding ConfirmarCommand}"
+                        Grid.Column="1"/>
+        </StackLayout>
+    </Frame>
+</ContentPage>

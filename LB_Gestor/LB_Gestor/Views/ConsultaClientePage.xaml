@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:dxc="http://schemas.devexpress.com/xamarin/2014/forms/collectionview"   
+             xmlns:tk="http://xamarin.com/schemas/2020/toolkit"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="LB_Gestor.Views.ConsultaClientePage"
+             Title="Consulta Pessoas"
+             BackgroundColor="{StaticResource Key=preto_lb}">
+    <AbsoluteLayout VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
+        <Frame HasShadow="True"
+               BackgroundColor="{StaticResource Key=fundo_form}"
+               CornerRadius="5"
+               Margin="0"
+               Padding="5"
+               HorizontalOptions="FillAndExpand"
+               VerticalOptions="Start">
+            <Grid HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand"
+                  RowDefinitions="Auto,*">
+                <Frame HasShadow="True"
+                       BackgroundColor="{StaticResource Key=fundo_form}"
+                       CornerRadius="5"
+                       Margin="0"
+                       Padding="0"
+                       HorizontalOptions="FillAndExpand"
+                       VerticalOptions="FillAndExpand">
+                    <Grid HorizontalOptions="FillAndExpand"
+                          VerticalOptions="FillAndExpand"
+                          ColumnDefinitions="*,Auto">
+                        <SearchBar x:Name="sbCliente"
+                                   Placeholder="Nome Pessoa"
+                                   SearchCommand="{Binding BuscarCommand}"
+                                   Text="{Binding Filtrocliente}"/>
+                        <ImageButton Source="lupa.png"
+                                     Margin="5,5,5,5"
+                                     WidthRequest="50"
+                                     HeightRequest="50"
+                                     Aspect="AspectFit"
+                                     Grid.Column="1"
+                                     Command="{Binding BuscarCommand}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <VisualState.Setters>
+                                            <Setter Property="Scale" Value="1" />
+                                            <Setter Property="BackgroundColor"
+                                        Value="Transparent"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <VisualState.Setters>
+                                            <Setter Property="Scale" Value="0.8" />
+                                            <Setter Property="BackgroundColor" Value="{StaticResource Key=laranja_lb}"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </ImageButton>
+                    </Grid>
+                </Frame>
+                <dxc:DXCollectionView x:Name="cvClientes"
+                                      Grid.Row="1"
+                                      Margin="0,0,0,60"
+                                      HorizontalOptions="FillAndExpand"
+                                      VerticalOptions="FillAndExpand"
+                                      SelectionMode="None"
+                                      ItemsSource="{Binding Clientes}">
+                    <dxc:DXCollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame HasShadow="True"
+                                   Margin="0,3,0,3"
+                                   Padding="0"
+                                   VerticalOptions="StartAndExpand" 
+                                   HorizontalOptions="FillAndExpand"
+                                   BackgroundColor="{StaticResource Key=fundo_form}">
+                                <Grid VerticalOptions="StartAndExpand"
+                                          HorizontalOptions="FillAndExpand"
+                                          ColumnDefinitions="Auto,*">
+                                    <BoxView BackgroundColor="{StaticResource Key=laranja_lb}"
+                                             WidthRequest="3"
+                                             HorizontalOptions="Start"
+                                             VerticalOptions="FillAndExpand"/>
+                                    <tk:Expander Grid.Column="1"
+                                                 ExpandAnimationEasing="{x:Static Easing.CubicIn}"
+                                                 ExpandAnimationLength="500"
+                                                 CollapseAnimationEasing="{x:Static Easing.CubicOut}"
+                                                 CollapseAnimationLength="500">
+                                        <tk:Expander.Header>
+                                            <Grid RowDefinitions="Auto,Auto" 
+                                                  ColumnDefinitions="*,Auto">
+                                                <StackLayout Orientation="Horizontal"
+                                                             HorizontalOptions="FillAndExpand"
+                                                             Grid.ColumnSpan="2">
+                                                    <Label Text="{Binding Nm_clifor}"
+                                                           TextColor="{StaticResource Key=preto_lb}"
+                                                           FontSize="14"
+                                                           FontAttributes="Bold"
+                                                           HorizontalOptions="StartAndExpand"
+                                                           VerticalOptions="Fill"
+                                                           HorizontalTextAlignment="Start"
+                                                           VerticalTextAlignment="Center"/>
+                                                    <Image Source="SetaBaixo.png"
+                                                           Grid.Column="2"
+                                                           HorizontalOptions="End"
+                                                           VerticalOptions="Start">
+                                                        <Image.Triggers>
+                                                            <DataTrigger TargetType="Image"
+                                                                         Binding="{Binding Source={RelativeSource AncestorType={x:Type tk:Expander}}, Path=IsExpanded}"
+                                                                         Value="True">
+                                                                <Setter Property="Source"
+                                                                        Value="SetaCima.png"/>
+                                                            </DataTrigger>
+                                                        </Image.Triggers>
+                                                    </Image>
+                                                </StackLayout>
+                                                <Label Text="{Binding Nm_fantasia}"
+                                                       TextColor="Gray"
+                                                       FontSize="10"
+                                                       FontAttributes="Bold"
+                                                       HorizontalOptions="StartAndExpand"
+                                                       VerticalOptions="Fill"
+                                                       HorizontalTextAlignment="Start"
+                                                       VerticalTextAlignment="Center"
+                                                       Grid.Row="1"/>
+                                                <Label Text="{Binding CnpjCpf}"
+                                                       TextColor="Gray"
+                                                       FontSize="10"
+                                                       FontAttributes="Bold"
+                                                       HorizontalOptions="EndAndExpand"
+                                                       VerticalOptions="Fill"
+                                                       HorizontalTextAlignment="Start"
+                                                       VerticalTextAlignment="Center"
+                                                       Grid.Row="1"
+                                                       Grid.Column="1"/>
+                                            </Grid>
+                                        </tk:Expander.Header>
+                                        <Grid ColumnDefinitions="*,Auto"
+                                              RowDefinitions="Auto,Auto,Auto">
+                                            <StackLayout Orientation="Vertical"
+                                                         HorizontalOptions="Fill"
+                                                         VerticalOptions="Fill">
+                                                <Label Text="Rua"
+                                                       TextColor="Gray"
+                                                       FontSize="10"
+                                                       FontAttributes="Bold"
+                                                       HorizontalTextAlignment="Start"
+                                                       VerticalTextAlignment="Center"/>
+                                                <Label Text="{Binding Ds_endereco}"
+                                                       TextColor="{StaticResource Key=preto_lb}"
+                                                       FontSize="14"
+                                                       HorizontalTextAlignment="Start"
+                                                       VerticalTextAlignment="Center"/>
+                                            </StackLayout>
+                                            <StackLayout Orientation="Vertical"
+                                                         HorizontalOptions="Fill"
+                                                         VerticalOptions="Fill"
+                                                         Grid.Column="1">
+                                                <Label Text="Numero"
+                                                       TextColor="Gray"
+                                                       FontSize="10"
+                                                       FontAttributes="Bold"
+                                                       HorizontalTextAlignment="Start"
+                                                       VerticalTextAlignment="Center"/>
+                                                <Label Text="{Binding Numero}"
+                                                       TextColor="{StaticResource Key=preto_lb}"
+                                                       FontSize="14"
+                                                       HorizontalTextAlignment="Start"
+                                                       VerticalTextAlignment="Center"/>
+                                            </StackLayout>
+                                            <StackLayout Orientation="Vertical"
+                                                         HorizontalOptions="Fill"
+                                                         VerticalOptions="Fill"
+                                                         Grid.Row="1"
+                                                         Grid.ColumnSpan="2">
+                                                <Label Text="Bairro"
+                                                       TextColor="Gray"
+                                                       FontSize="10"
+                                                       FontAttributes="Bold"
+                                                       HorizontalTextAlignment="Start"
+                                                       VerticalTextAlignment="Center"/>
+                                                <Label Text="{Binding Bairro}"
+                                                       TextColor="{StaticResource Key=preto_lb}"
+                                                       FontSize="14"
+                                                       HorizontalTextAlignment="Start"
+                                                       VerticalTextAlignment="Center"/>
+                                            </StackLayout>
+                                            <Grid HorizontalOptions="FillAndExpand"
+                                                  VerticalOptions="FillAndExpand"
+                                                  ColumnDefinitions="*,Auto,60"
+                                                  Grid.Row="2"
+                                                  Grid.ColumnSpan="2">
+                                                <StackLayout Orientation="Vertical"
+                                                             HorizontalOptions="Fill"
+                                                             VerticalOptions="Fill"
+                                                             Grid.Column="0">
+                                                    <Label Text="Cidade"
+                                                           TextColor="Gray"
+                                                           FontSize="10"
+                                                           FontAttributes="Bold"
+                                                           HorizontalTextAlignment="Start"
+                                                           VerticalTextAlignment="Center"/>
+                                                    <Label Text="{Binding Ds_cidade}"
+                                                           TextColor="{StaticResource Key=preto_lb}"
+                                                           FontSize="14"
+                                                           HorizontalTextAlignment="Start"
+                                                           VerticalTextAlignment="Center"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Vertical"
+                                                             HorizontalOptions="Fill"
+                                                             Grid.Column="1">
+                                                    <Label Text="UF"
+                                                           TextColor="Gray"
+                                                           FontSize="10"
+                                                           FontAttributes="Bold"
+                                                           HorizontalTextAlignment="Start"
+                                                           VerticalTextAlignment="Center"/>
+                                                    <Label Text="{Binding UF}"
+                                                           TextColor="{StaticResource Key=preto_lb}"
+                                                           FontSize="14"
+                                                           HorizontalTextAlignment="Start"
+                                                           VerticalTextAlignment="Center"/>
+                                                </StackLayout>
+                                                <ImageButton x:Name="btnConfirma"
+                                                             Source="confirmar.png"
+                                                             BackgroundColor="Transparent"
+                                                             Aspect="AspectFill"
+                                                             Grid.Column="2"
+                                                             Command="{Binding Source={x:Reference cvClientes}, Path=BindingContext.SelecionarCommand}"
+                                                             CommandParameter="{Binding .}"/>
+                                            </Grid>
+                                        </Grid>
+                                    </tk:Expander>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </dxc:DXCollectionView.ItemTemplate>
+                </dxc:DXCollectionView>
+            </Grid>
+        </Frame>
+        <Button x:Name="btnNovo"
+                ImageSource="novo.png"
+                CornerRadius="100"
+                HeightRequest="55"
+                WidthRequest="55"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                Padding="15"
+                Margin="10"
+                BackgroundColor="{StaticResource Key=laranja_lb}"
+                AbsoluteLayout.LayoutBounds="1,1,AutoSize,AutoSize"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                Command="{Binding NovoCommand}"/>
+    </AbsoluteLayout>
+</ContentPage>

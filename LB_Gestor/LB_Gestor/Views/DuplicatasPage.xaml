@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:tk="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:dxc="http://schemas.devexpress.com/xamarin/2014/forms/collectionview"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             Title="DUPLICATAS"
+             x:Class="LB_Gestor.Views.DuplicatasPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="NOVO"
+                     Order="Primary"
+                     Command="{Binding NovaDuplicataCommand}"/>
+    </ContentPage.ToolbarItems>
+    <Frame HasShadow="True"
+           BackgroundColor="{StaticResource Key=fundo_form}"
+           CornerRadius="5"
+           Margin="0"
+           Padding="5"
+           HorizontalOptions="FillAndExpand"
+           VerticalOptions="FillAndExpand">
+        <Grid RowDefinitions="Auto,*">
+            <Frame HasShadow="True"
+                   BackgroundColor="{StaticResource Key=laranja_lb}"
+                   CornerRadius="5"
+                   Margin="0"
+                   Padding="3">
+                <Grid HorizontalOptions="FillAndExpand"
+                      RowDefinitions="Auto,Auto"
+                      ColumnDefinitions="*,40">
+                    <StackLayout HorizontalOptions="FillAndExpand">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BuscarClienteCommand}"/>
+                        </StackLayout.GestureRecognizers>
+                        <Entry x:Name="txtCliente"
+                               TextColor="{StaticResource Key=preto_lb}"
+                               InputTransparent="True"
+                               Placeholder="Cliente"
+                               HorizontalOptions="FillAndExpand"
+                               IsReadOnly="True"
+                               Text="{Binding Cliente.Nm_clifor}"/>
+                    </StackLayout>
+                    <ImageButton Source="x.png"
+                                 Margin="5,5,5,5"
+                                 WidthRequest="35"
+                                 HeightRequest="35"
+                                 Aspect="AspectFit"
+                                 Grid.Column="1"
+                                 Command="{Binding LimparCliente}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="Scale" Value="1" />
+                                        <Setter Property="BackgroundColor" Value="Transparent"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="Scale" Value="0.8" />
+                                        <Setter Property="BackgroundColor" Value="{StaticResource Key=laranja_lb}"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </ImageButton>
+                    <StackLayout Orientation="Vertical"
+                                 HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="FillAndExpand"
+                                 Grid.Row="1">
+                        <Label Text="Movimento"
+                               TextColor="Gray"
+                               FontSize="Caption"
+                               FontAttributes="Bold"
+                               HorizontalTextAlignment="Start"
+                               VerticalTextAlignment="Start"/>
+                        <Picker x:Name="pkMov"
+                                Title="TIPO MOVIMENTO"
+                                FontSize="Caption"
+                                TitleColor="LightSlateGray"
+                                HorizontalOptions="FillAndExpand"
+                                ItemsSource="{Binding Mov}"
+                                ItemDisplayBinding="{Binding Valor}"
+                                SelectedItem="{Binding Movcorrente}"/>
+                    </StackLayout>
+                    <ImageButton Source="lupa.png"
+                                 Margin="5,5,5,5"
+                                 WidthRequest="35"
+                                 HeightRequest="35"
+                                 Aspect="AspectFit"
+                                 Grid.Row="1"
+                                 Grid.Column="1"
+                                 Command="{Binding BuscarDuplicataCommand}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="Scale" Value="1" />
+                                        <Setter Property="BackgroundColor" Value="Transparent"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="Scale" Value="0.8" />
+                                        <Setter Property="BackgroundColor" Value="{StaticResource Key=laranja_lb}"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </ImageButton>
+                </Grid>
+            </Frame>
+            <dxc:DXCollectionView x:Name="cvDup"
+                                  HorizontalOptions="FillAndExpand"
+                                  VerticalOptions="FillAndExpand"
+                                  SelectionMode="Single"
+                                  Grid.Row="1"
+                                  ItemsSource="{Binding Duplicatas}">
+                <dxc:DXCollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame HasShadow="True"
+                               VerticalOptions="StartAndExpand"
+                               HorizontalOptions="FillAndExpand"
+                               BackgroundColor="{StaticResource Key=fundo_form}"
+                               Padding="0,0,0,5">
+                            <Grid VerticalOptions="StartAndExpand"
+                                  HorizontalOptions="FillAndExpand"
+                                  ColumnDefinitions="Auto,*">
+                                <BoxView BackgroundColor="{StaticResource Key=laranja_lb}"
+                                         WidthRequest="3"
+                                         HorizontalOptions="Start"
+                                         VerticalOptions="FillAndExpand"/>
+                                <SwipeView Grid.Column="1">
+                                    <SwipeView.RightItems>
+                                        <SwipeItem Text="Quitar"
+                                                   BackgroundColor="Beige"
+                                                   Command="{Binding Source={x:Reference cvDup}, Path=BindingContext.ReceberCommand}"
+                                                   CommandParameter="{Binding .}"/>
+                                        <SwipeItem Text="Prorrogar"
+                                                   BackgroundColor="Bisque"
+                                                   Command="{Binding Source={x:Reference cvDup}, Path=BindingContext.ProrrogarCommand}"
+                                                   CommandParameter="{Binding .}"/>
+                                    </SwipeView.RightItems>
+                                    <Grid HorizontalOptions="FillAndExpand"
+                                          VerticalOptions="FillAndExpand"
+                                          ColumnDefinitions="*,Auto,Auto"
+                                          RowDefinitions="Auto,Auto">
+                                        <StackLayout Orientation="Vertical">
+                                            <Label Text="Historico"
+                                                   TextColor="Gray"
+                                                   FontSize="10"
+                                                   FontAttributes="Bold"
+                                                   HorizontalTextAlignment="Start"
+                                                   VerticalTextAlignment="Center"/>
+                                            <Label Text="{Binding Ds_historico}" 
+                                                   TextColor="{StaticResource Key=preto_lb}"
+                                                   FontAttributes="Bold"
+                                                   HorizontalOptions="StartAndExpand"
+                                                   HorizontalTextAlignment="Start"
+                                                   VerticalTextAlignment="Center"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Vertical"
+                                                     Grid.Column="1">
+                                            <Label Text="Vencimento"
+                                                   TextColor="Gray"
+                                                   FontSize="10"
+                                                   FontAttributes="Bold"
+                                                   HorizontalTextAlignment="Start"
+                                                   VerticalTextAlignment="Center"/>
+                                            <Label Text="{Binding Dt_vencto, StringFormat='{0:dd/MM/yyyy}'}" 
+                                                   TextColor="{StaticResource Key=preto_lb}"
+                                                   FontAttributes="Bold"
+                                                   HorizontalOptions="Center"
+                                                   HorizontalTextAlignment="Center"
+                                                   VerticalTextAlignment="Center"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Vertical"
+                                                     Grid.Column="2">
+                                            <Label Text="Atual"
+                                                   TextColor="Gray"
+                                                   FontSize="10"
+                                                   FontAttributes="Bold"
+                                                   HorizontalTextAlignment="Start"
+                                                   VerticalTextAlignment="Center"/>
+                                            <Label Text="{Binding Vl_atual, StringFormat='{0:N2}'}" 
+                                                   TextColor="{StaticResource Key=preto_lb}"
+                                                   FontAttributes="Bold"
+                                                   HorizontalOptions="End"
+                                                   HorizontalTextAlignment="End"
+                                                   VerticalTextAlignment="Center"/>
+                                        </StackLayout>
+                                        <Grid ColumnDefinitions="*,*,*"
+                                              Grid.Row="1"
+                                              Grid.ColumnSpan="3">
+                                            <StackLayout Orientation="Vertical">
+                                                <Label Text="Emissão"
+                                                       TextColor="Gray"
+                                                       FontSize="10"
+                                                       FontAttributes="Bold"
+                                                       HorizontalTextAlignment="Start"
+                                                       VerticalTextAlignment="Center"/>
+                                                <Label Text="{Binding Dt_emissao, StringFormat='{0:dd/MM/yyyy}'}" 
+                                                       TextColor="{StaticResource Key=preto_lb}"
+                                                       HorizontalOptions="Start"
+                                                       HorizontalTextAlignment="Center"
+                                                       VerticalTextAlignment="Center"/>
+                                            </StackLayout>
+                                            <StackLayout Orientation="Vertical"
+                                                         Grid.Column="1">
+                                                <Label Text="Vl. Dup"
+                                                       TextColor="Gray"
+                                                       FontSize="10"
+                                                       FontAttributes="Bold"
+                                                       HorizontalTextAlignment="Start"
+                                                       VerticalTextAlignment="Center"/>
+                                                <Label Text="{Binding Vl_parcela, StringFormat='{0:N2}'}" 
+                                                       TextColor="{StaticResource Key=preto_lb}"
+                                                       HorizontalOptions="Start"
+                                                       HorizontalTextAlignment="Center"
+                                                       VerticalTextAlignment="Center"/>
+                                            </StackLayout>
+                                            <StackLayout Orientation="Vertical"
+                                                         Grid.Column="2">
+                                                <Label Text="Status"
+                                                       TextColor="Gray"
+                                                       FontSize="10"
+                                                       FontAttributes="Bold"
+                                                       HorizontalTextAlignment="Start"
+                                                       VerticalTextAlignment="Center"/>
+                                                <Label Text="{Binding Status_parcela}" 
+                                                       TextColor="{StaticResource Key=preto_lb}"
+                                                       HorizontalOptions="Start"
+                                                       HorizontalTextAlignment="Center"
+                                                       VerticalTextAlignment="Center"/>
+                                            </StackLayout>
+                                        </Grid>
+                                    </Grid>
+                                </SwipeView>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </dxc:DXCollectionView.ItemTemplate>
+                <dxc:DXCollectionView.GroupDescription>
+                    <dxc:GroupDescription FieldName="Nm_clifor"/>
+                </dxc:DXCollectionView.GroupDescription>
+                <dxc:DXCollectionView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <Frame HasShadow="True"
+                               BackgroundColor="LightGray"
+                               CornerRadius="5"
+                               Margin="2"
+                               Padding="0">
+                            <StackLayout>
+                                <Label Text="{Binding Value}"
+                                       FontSize="Caption"
+                                       TextColor="{StaticResource Key=preto_lb}"
+                                       HorizontalOptions="FillAndExpand"
+                                       HorizontalTextAlignment="Center"
+                                       FontAttributes="Bold"/>
+                                <BoxView BackgroundColor="AliceBlue"
+                                         HeightRequest="1"/>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </dxc:DXCollectionView.GroupHeaderTemplate>
+            </dxc:DXCollectionView>
+        </Grid>
+    </Frame>
+</ContentPage>

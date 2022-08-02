@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:behaviorPack="clr-namespace:Xamarin.Forms.BehaviorValidationPack;assembly=Xamarin.Forms.BehaviorValidationPack"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="LB_Gestor.Views.NovoClientePage"
+             Visual="Material"
+             Title="NOVA PESSOA"
+             BackgroundColor="{StaticResource Key=preto_lb}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="save.png"
+                     Order="Primary"
+                     Priority="0"
+                     Command="{Binding SalvarCommand}"/>
+    </ContentPage.ToolbarItems>
+    <Frame HasShadow="True"
+           BackgroundColor="{StaticResource Key=fundo_form}"
+           CornerRadius="5"
+           Margin="5"
+           Padding="5"
+           HorizontalOptions="FillAndExpand"
+           VerticalOptions="CenterAndExpand">
+        <StackLayout Padding="5"
+                     Orientation="Vertical">
+            <Picker x:Name="pkTpPessoa"
+                    Title="Tipo Pessoa"
+                    FontSize="16"
+                    HorizontalOptions="FillAndExpand"
+                    BackgroundColor="{StaticResource Key=fundo_form}"
+                    ItemsSource="{Binding TiposPessoas}"
+                    ItemDisplayBinding="{Binding Valor}"
+                    SelectedItem="{Binding TipoPessoaCorrente}"/>
+            <Grid ColumnDefinitions="*,Auto"
+                  IsVisible="{Binding isJuridica}">
+                <Entry x:Name="txtCnpj"
+                       Placeholder="CNPJ"
+                       Keyboard="Numeric"
+                       HorizontalOptions="FillAndExpand"
+                       BackgroundColor="{StaticResource Key=fundo_form}"
+                       Text="{Binding Cliente.Nr_cgc}">
+                    <Entry.Behaviors>
+                        <behaviorPack:CPFValidationBehavior/>
+                        <behaviorPack:MaskedBehavior Mask="XX.XXX.XXX/XXXX-XX"/>
+                    </Entry.Behaviors>
+                </Entry>
+                <ImageButton Source="lupa.png"
+                             Margin="5,5,5,5"
+                             WidthRequest="50"
+                             HeightRequest="50"
+                             Aspect="AspectFit"
+                             Grid.Column="1"
+                             Command="{Binding BuscarCnpjCommand}">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale"
+                                            Value="1" />
+                                    <Setter Property="BackgroundColor"
+                                            Value="Transparent"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale"
+                                            Value="0.8" />
+                                    <Setter Property="BackgroundColor"
+                                            Value="{StaticResource Key=laranja_lb}"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </ImageButton>
+            </Grid>
+            <Entry x:Name="txtNome"
+                   Placeholder="Razão Social ou Nome *"
+                   Visual="Material"
+                   HorizontalOptions="FillAndExpand"
+                   ClearButtonVisibility="WhileEditing"
+                   TextTransform="Uppercase"
+                   BackgroundColor="{StaticResource Key=fundo_form}"
+                   Text="{Binding Cliente.Nm_clifor}"/>
+            <Entry x:Name="txtFantasia"
+                   Placeholder="Nome Fantasia"
+                   HorizontalOptions="FillAndExpand"
+                   TextTransform="Uppercase"
+                   BackgroundColor="{StaticResource Key=fundo_form}"
+                   IsVisible="{Binding isJuridica}"
+                   Text="{Binding Cliente.Nm_fantasia}"/>
+            <Entry x:Name="txtCpf"
+                   Placeholder="CPF"
+                   Keyboard="Numeric"
+                   HorizontalOptions="FillAndExpand"
+                   IsVisible="{Binding isFisica}"
+                   BackgroundColor="{StaticResource Key=fundo_form}"
+                   Text="{Binding Cliente.Nr_cpf}">
+                <Entry.Behaviors>
+                    <behaviorPack:CPFValidationBehavior/>
+                    <behaviorPack:MaskedBehavior Mask="XXX.XXX.XXX-XX"/>
+                </Entry.Behaviors>
+            </Entry>
+            <Grid ColumnDefinitions="*,Auto">
+                <Entry x:Name="txtCep"
+                       Placeholder="CEP"
+                       Keyboard="Numeric"
+                       HorizontalOptions="FillAndExpand"
+                       BackgroundColor="{StaticResource Key=fundo_form}"
+                       Text="{Binding Cliente.Cep}">
+                    <Entry.Behaviors>
+                        <behaviorPack:CEPValidationBehavior/>
+                        <behaviorPack:MaskedBehavior Mask="XX.XXX-XXX"/>
+                    </Entry.Behaviors>
+                </Entry>
+                <ImageButton Source="lupa.png"
+                             Margin="5,5,5,5"
+                             WidthRequest="50"
+                             HeightRequest="50"
+                             Aspect="AspectFit"
+                             Grid.Column="1"
+                             Command="{Binding BuscarCepCommand}">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale"
+                                            Value="1" />
+                                    <Setter Property="BackgroundColor"
+                                            Value="Transparent"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale"
+                                            Value="0.8" />
+                                    <Setter Property="BackgroundColor"
+                                            Value="{StaticResource Key=laranja_lb}"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </ImageButton>
+            </Grid>
+            <Entry x:Name="txtLogradouro"
+                   Placeholder="Rua *"
+                   HorizontalOptions="FillAndExpand"
+                   TextTransform="Uppercase"
+                   BackgroundColor="{StaticResource Key=fundo_form}"
+                   Text="{Binding Cliente.Ds_endereco}"/>
+            <Grid HorizontalOptions="FillAndExpand"
+                  VerticalOptions="Fill"
+                  ColumnDefinitions="*,80">
+                <Entry x:Name="txtBairro"
+                       Placeholder="Bairro *"
+                       HorizontalOptions="FillAndExpand"
+                       TextTransform="Uppercase"
+                       BackgroundColor="{StaticResource Key=fundo_form}"
+                       Text="{Binding Cliente.Bairro}"/>
+                <Entry x:Name="txtNumero"
+                       Placeholder="Nº *"
+                       Grid.Column="1"
+                       HorizontalOptions="FillAndExpand"
+                       TextTransform="Uppercase"
+                       BackgroundColor="{StaticResource Key=fundo_form}"
+                       Text="{Binding Cliente.Numero}"/>
+            </Grid>
+            <StackLayout Orientation="Vertical">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BuscarCidadeCommand}"/>
+                </StackLayout.GestureRecognizers>
+                <Entry x:Name="txtCidade"
+                       Placeholder="Cidade *"
+                       InputTransparent="True"
+                       HorizontalOptions="FillAndExpand"
+                       IsReadOnly="True"
+                       BackgroundColor="{StaticResource Key=fundo_form}"
+                       Text="{Binding Cliente.Ds_cidade}"/>
+            </StackLayout>
+            <Entry x:Name="txtComplemento"
+                   Placeholder="Complemento"
+                   HorizontalOptions="FillAndExpand"
+                   TextTransform="Uppercase"
+                   BackgroundColor="{StaticResource Key=fundo_form}"
+                   Text="{Binding Cliente.Ds_complemento}"/>
+        </StackLayout>
+    </Frame>
+</ContentPage>

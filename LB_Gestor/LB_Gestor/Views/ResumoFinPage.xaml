@@ -1,0 +1,431 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="LB_Gestor.Views.ResumoFinPage"
+             Title="RESUMO FINANCEIRO"
+             Visual="Material"
+             BackgroundColor="{StaticResource Key=preto_lb}">
+    <Frame HasShadow="True"
+            BackgroundColor="{StaticResource Key=fundo_form}"
+            CornerRadius="5"
+            Margin="10,0,10,0"
+            Padding="5"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+        <Grid RowDefinitions="Auto,*"
+              HorizontalOptions="FillAndExpand"
+              VerticalOptions="FillAndExpand">
+            <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                  ColumnDefinitions="*,*"
+                  HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand">
+                <Label Text="RECEBER"
+                       FontSize="Subtitle"
+                       TextColor="{StaticResource Key=fundo_form}"
+                       BackgroundColor="Green"
+                       FontAttributes="Bold"
+                       HorizontalOptions="FillAndExpand"
+                       VerticalOptions="FillAndExpand"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"/>
+                <Label Text="PAGAR"
+                       FontSize="Subtitle"
+                       TextColor="{StaticResource Key=fundo_form}"
+                       BackgroundColor="Red"
+                       FontAttributes="Bold"
+                       HorizontalOptions="FillAndExpand"
+                       VerticalOptions="FillAndExpand"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       Grid.Column="1"/>
+                <Frame HasShadow="True"
+                       CornerRadius="5"
+                       Padding="0"
+                       Grid.Row="1"
+                       BackgroundColor="{StaticResource Key=fundo_form}">
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="Vencidas + 30 dias"
+                               TextColor="{StaticResource Key=preto_lb}"
+                               FontSize="Small"
+                               FontAttributes="Bold"
+                               FontFamily="SANSATION_BOLD"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="Start"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"/>
+                        <Label Text="{Binding Resumo.Vl_rec_mais30dias_venc, StringFormat='{0:C}'}"
+                               TextColor="Red"
+                               FontSize="Subtitle"
+                               FontAttributes="Bold"
+                               FontFamily="SANSATION_BOLD"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="End"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                </Frame>
+                <Frame HasShadow="True"
+                       CornerRadius="5"
+                       Padding="0"
+                       Grid.Row="1"
+                       Grid.Column="1"
+                       BackgroundColor="{StaticResource Key=fundo_form}">
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="Vencidas + 30 dias"
+                               TextColor="{StaticResource Key=preto_lb}"
+                               FontSize="Small"
+                               FontAttributes="Bold"
+                               FontFamily="SANSATION_BOLD"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="Start"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"/>
+                        <Label Text="{Binding Resumo.Vl_pag_mais30dias_venc, StringFormat='{0:C}'}"
+                               TextColor="red"
+                               FontSize="Subtitle"
+                               FontAttributes="Bold"
+                               FontFamily="SANSATION_BOLD"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="End"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                </Frame>
+                <Frame HasShadow="True"
+                       CornerRadius="5"
+                       Padding="0"
+                       Grid.Row="2"
+                       BackgroundColor="{StaticResource Key=fundo_form}">
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="Vencidas 30 dias"
+                               TextColor="{StaticResource Key=preto_lb}"
+                               FontSize="Small"
+                               FontAttributes="Bold"
+                               FontFamily="SANSATION_BOLD"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="Start"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"/>
+                        <Label Text="{Binding Resumo.Vl_rec_30dias_venc, StringFormat='{0:C}'}"
+                               TextColor="Red"
+                               FontSize="Subtitle"
+                               FontAttributes="Bold"
+                               FontFamily="SANSATION_BOLD"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="End"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                </Frame>
+                <Frame HasShadow="True"
+                       CornerRadius="5"
+                       Padding="0"
+                       Grid.Row="2"
+                       Grid.Column="1"
+                       BackgroundColor="{StaticResource Key=fundo_form}">
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="Vencidas 30 dias"
+                               TextColor="{StaticResource Key=preto_lb}"
+                               FontSize="Small"
+                               FontAttributes="Bold"
+                               FontFamily="SANSATION_BOLD"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="Start"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"/>
+                        <Label Text="{Binding Resumo.Vl_pag_30dias_venc, StringFormat='{0:C}'}"
+                               TextColor="Red"
+                               FontSize="Subtitle"
+                               FontAttributes="Bold"
+                               FontFamily="SANSATION_BOLD"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="End"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                </Frame>
+                <Frame HasShadow="True"
+                       CornerRadius="5"
+                       Padding="0"
+                       Grid.Row="3"
+                       BackgroundColor="Silver">
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="Vence hoje"
+                               TextColor="{StaticResource Key=fundo_form}"
+                               FontSize="Small"
+                               FontAttributes="Bold"
+                               FontFamily="SANSATION_BOLD"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="Start"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"/>
+                        <Label Text="{Binding Resumo.Vl_rec_hoje, StringFormat='{0:C}'}"
+                               TextColor="{StaticResource Key=fundo_form}"
+                               FontSize="Subtitle"
+                               FontAttributes="Bold"
+                               FontFamily="SANSATION_BOLD"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="End"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                </Frame>
+                <Frame HasShadow="True"
+                       CornerRadius="5"
+                       Padding="0"
+                       Grid.Row="3"
+                       Grid.Column="1"
+                       BackgroundColor="Silver">
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="Vence hoje"
+                               TextColor="{StaticResource Key=fundo_form}"
+                               FontSize="Small"
+                               FontAttributes="Bold"
+                               FontFamily="SANSATION_BOLD"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="Start"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"/>
+                        <Label Text="{Binding Resumo.Vl_pag_hoje, StringFormat='{0:C}'}"
+                               TextColor="{StaticResource Key=fundo_form}"
+                               FontSize="Subtitle"
+                               FontAttributes="Bold"
+                               FontFamily="SANSATION_BOLD"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="End"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                </Frame>
+                <Frame HasShadow="True"
+                       CornerRadius="5"
+                       Padding="0"
+                       Grid.Row="4"
+                       BackgroundColor="{StaticResource Key=fundo_form}">
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="Vencer 30 dias"
+                               TextColor="{StaticResource Key=preto_lb}"
+                               FontSize="Small"
+                               FontAttributes="Bold"
+                               FontFamily="SANSATION_BOLD"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="Start"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"/>
+                        <Label Text="{Binding Resumo.Vl_rec_30dias, StringFormat='{0:C}'}"
+                               TextColor="Green"
+                               FontSize="Subtitle"
+                               FontAttributes="Bold"
+                               FontFamily="SANSATION_BOLD"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="End"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                </Frame>
+                <Frame HasShadow="True"
+                       CornerRadius="5"
+                       Padding="0"
+                       Grid.Row="4"
+                       Grid.Column="1"
+                       BackgroundColor="{StaticResource Key=fundo_form}">
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="Vencer 30 dias"
+                               TextColor="{StaticResource Key=preto_lb}"
+                               FontSize="Small"
+                               FontAttributes="Bold"
+                               FontFamily="SANSATION_BOLD"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="Start"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"/>
+                        <Label Text="{Binding Resumo.Vl_pag_30dias, StringFormat='{0:C}'}"
+                               TextColor="Green"
+                               FontSize="Subtitle"
+                               FontAttributes="Bold"
+                               FontFamily="SANSATION_BOLD"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="End"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                </Frame>
+                <Frame HasShadow="True"
+                       CornerRadius="5"
+                       Padding="0"
+                       Grid.Row="5"
+                       BackgroundColor="{StaticResource Key=fundo_form}">
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="Vencer + 30 dias"
+                               TextColor="{StaticResource Key=preto_lb}"
+                               FontSize="Small"
+                               FontAttributes="Bold"
+                               FontFamily="SANSATION_BOLD"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="Start"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"/>
+                        <Label Text="{Binding Resumo.Vl_rec_mais30dias, StringFormat='{0:C}'}"
+                               TextColor="Green"
+                               FontSize="Subtitle"
+                               FontAttributes="Bold"
+                               FontFamily="SANSATION_BOLD"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="End"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                </Frame>
+                <Frame HasShadow="True"
+                       CornerRadius="5"
+                       Padding="0"
+                       Grid.Row="5"
+                       Grid.Column="1"
+                       BackgroundColor="{StaticResource Key=fundo_form}">
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="Vencer + 30 dias"
+                               TextColor="{StaticResource Key=preto_lb}"
+                               FontSize="Small"
+                               FontAttributes="Bold"
+                               FontFamily="SANSATION_BOLD"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="Start"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"/>
+                        <Label Text="{Binding Resumo.Vl_pag_mais30dias, StringFormat='{0:C}'}"
+                               TextColor="Green"
+                               FontSize="Subtitle"
+                               FontAttributes="Bold"
+                               FontFamily="SANSATION_BOLD"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="End"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                </Frame>
+                <Frame HasShadow="True"
+                       CornerRadius="5"
+                       Padding="0"
+                       Grid.Row="6"
+                       BackgroundColor="Silver">
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="Total Receber"
+                               TextColor="{StaticResource Key=preto_lb}"
+                               FontSize="Small"
+                               FontAttributes="Bold"
+                               FontFamily="SANSATION_BOLD"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="Start"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"/>
+                        <Label Text="{Binding Resumo.Tot_receber, StringFormat='{0:C}'}"
+                               TextColor="Green"
+                               FontSize="Subtitle"
+                               FontAttributes="Bold"
+                               FontFamily="SANSATION_BOLD"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="End"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                </Frame>
+                <Frame HasShadow="True" 
+                       CornerRadius="5"
+                       Padding="0"
+                       Grid.Row="6"
+                       Grid.Column="1"
+                       BackgroundColor="Silver">
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="Total Pagar"
+                               TextColor="{StaticResource Key=preto_lb}"
+                               FontSize="Small"
+                               FontAttributes="Bold"
+                               FontFamily="SANSATION_BOLD"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="Start"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"/>
+                        <Label Text="{Binding Resumo.Tot_pagar, StringFormat='{0:C}'}"
+                               TextColor="Red"
+                               FontSize="Subtitle"
+                               FontAttributes="Bold"
+                               FontFamily="SANSATION_BOLD"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="End"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+            <StackLayout Orientation="Vertical"
+                         HorizontalOptions="FillAndExpand"
+                         VerticalOptions="FillAndExpand"
+                         Grid.Row="1">
+                <Label Text="SALDO CONTAS GERENCIAIS"
+                       FontSize="Subtitle"
+                       TextColor="{StaticResource Key=fundo_form}"
+                       BackgroundColor="{StaticResource Key=laranja_lb}"
+                       FontAttributes="Bold"
+                       HorizontalOptions="FillAndExpand"
+                       VerticalOptions="FillAndExpand"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"/>
+                <CollectionView ItemsSource="{Binding Contas}"
+                                SelectionMode="None"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical"
+                                         Span="2"
+                                         HorizontalItemSpacing="5"
+                                         VerticalItemSpacing="5"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame HasShadow="True"
+                                   CornerRadius="5"
+                                   Padding="0"
+                                   BackgroundColor="{StaticResource Key=fundo_form}">
+                                <StackLayout Orientation="Vertical">
+                                    <Label Text="{Binding Ds_contager}"
+                                           TextColor="{StaticResource Key=preto_lb}"
+                                           FontSize="Small"
+                                           FontAttributes="Bold"
+                                           FontFamily="SANSATION_BOLD"
+                                           HorizontalOptions="FillAndExpand"
+                                           VerticalOptions="Start"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Center"/>
+                                    <Label Text="{Binding Vl_Saldo, StringFormat='{0:C}'}"
+                                           TextColor="{Binding CorSaldo}"
+                                           FontSize="Subtitle"
+                                           FontAttributes="Bold"
+                                           FontFamily="SANSATION_BOLD"
+                                           HorizontalOptions="FillAndExpand"
+                                           VerticalOptions="End"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Center"/>
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
+                        <ContentView>
+                            <StackLayout HorizontalOptions="CenterAndExpand"
+                                         VerticalOptions="CenterAndExpand">
+                                <Label Text="LISTA VAZIA"
+                                       FontAttributes="Bold"
+                                       FontSize="Large"
+                                       HorizontalOptions="Fill"
+                                       VerticalOptions="Center"
+                                       TextColor="{StaticResource Key=laranja_lb}"/>
+                            </StackLayout>
+                        </ContentView>
+                    </CollectionView.EmptyView>
+                </CollectionView>
+            </StackLayout>
+        </Grid>
+    </Frame>
+</ContentPage>

@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:converterPack="clr-namespace:Xamarin.Forms.ConvertersPack;assembly=Xamarin.Forms.ConvertersPack" 
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="LB_Gestor.Views.CaixaPage"
+             Visual="Material"
+             Title="NOVA DUPLICATA"
+             BackgroundColor="{StaticResource Key=preto_lb}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converterPack:CurrencyConverter x:Key="CurrencyConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Frame HasShadow="True"
+           BackgroundColor="{StaticResource Key=fundo_form}"
+           CornerRadius="5"
+           Margin="5"
+           Padding="5"
+           HorizontalOptions="FillAndExpand"
+           VerticalOptions="CenterAndExpand">
+        <StackLayout Orientation="Vertical">
+            <Picker Title="Conta Gerencial"
+                    FontSize="16"
+                    HorizontalOptions="FillAndExpand"
+                    BackgroundColor="{StaticResource Key=fundo_form}"
+                    ItemsSource="{Binding ContasGer}"
+                    ItemDisplayBinding="{Binding Ds_contager}"
+                    SelectedItem="{Binding ContaGerCorrente}"/>
+            <Picker Title="Historico"
+                    FontSize="16"
+                    HorizontalOptions="FillAndExpand"
+                    BackgroundColor="{StaticResource Key=fundo_form}"
+                    ItemsSource="{Binding Historicos}"
+                    ItemDisplayBinding="{Binding Ds_historico}"
+                    SelectedItem="{Binding HistCorrente}"/>
+            <Picker Title="Plano Contas"
+                    FontSize="16"
+                    HorizontalOptions="FillAndExpand"
+                    BackgroundColor="{StaticResource Key=fundo_form}"
+                    ItemsSource="{Binding PlanoContas}"
+                    ItemDisplayBinding="{Binding Ds_conta}"
+                    SelectedItem="{Binding ContaCorrente}"/>
+            <Grid ColumnDefinitions="*,*">
+                <StackLayout Orientation="Vertical">
+                    <Label Text="Dt. Pagamento"
+                           TextColor="Gray"
+                           FontSize="Caption"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Start"
+                           VerticalTextAlignment="Start"/>
+                    <DatePicker Format="dd/MM/yyyy"
+                                FontSize="Caption"
+                                BackgroundColor="{StaticResource Key=fundo_form}"
+                                HorizontalOptions="FillAndExpand"
+                                Date="{Binding Caixa.Dt_lancto}"/>
+                </StackLayout>
+                <Entry Text="{Binding Caixa.Valor, Converter={StaticResource CurrencyConverter}}"
+                       BackgroundColor="{StaticResource Key=fundo_form}"
+                       Placeholder="Valor Pago"
+                       Keyboard="Numeric"
+                       Margin="10"
+                       FontSize="18"
+                       Grid.Column="1"
+                       FontAttributes="Bold"
+                       HorizontalOptions="FillAndExpand"
+                       VerticalOptions="FillAndExpand"
+                       HorizontalTextAlignment="End"
+                       VerticalTextAlignment="Center"/>
+            </Grid>
+            <Editor Margin="10,0,10,0"
+                    Placeholder="Complemento Histórico"
+                    Text="{Binding Caixa.CompHistorico}"
+                    AutoSize="TextChanges"
+                    MaxLength="255"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    BackgroundColor="{StaticResource Key=fundo_form}">
+                <Editor.Keyboard>
+                    <Keyboard x:FactoryMethod="Create">
+                        <x:Arguments>
+                            <KeyboardFlags>Suggestions,CapitalizeSentence</KeyboardFlags>
+                        </x:Arguments>
+                    </Keyboard>
+                </Editor.Keyboard>
+            </Editor>
+            <Button Text="CONFIRMAR"
+                    BackgroundColor="{StaticResource Key=laranja_lb}"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    CornerRadius="10"
+                    HeightRequest="60"
+                    Command="{Binding ConfirmarCommand}"/>
+        </StackLayout>
+    </Frame>
+</ContentPage>

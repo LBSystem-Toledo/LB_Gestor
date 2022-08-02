@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="LB_Gestor.Views.DashBoardRestaurantePage"
+             Title="RESTAURANTE"
+             Visual="Material"
+             BackgroundColor="{StaticResource preto_lb}">
+    <Frame HasShadow="True"
+           BackgroundColor="{StaticResource fundo_form}"
+           CornerRadius="5"
+           Margin="10,0,10,0"
+           Padding="5"
+           HorizontalOptions="FillAndExpand"
+           VerticalOptions="FillAndExpand">
+        <Grid HorizontalOptions="FillAndExpand"
+              VerticalOptions="FillAndExpand"
+              Margin="2"
+              ColumnSpacing="3"
+              RowSpacing="3"
+              RowDefinitions="*,*,*"
+              ColumnDefinitions="*,*">
+            <Frame HasShadow="True"
+                   BackgroundColor="{StaticResource laranja_lb}"
+                   CornerRadius="10"
+                   Margin="5"
+                   Padding="5"
+                   Visual="Material"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand">
+                <StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PedidoHojeCommand}"/>
+                    </StackLayout.GestureRecognizers>
+                    <Label Text="PEDIDOS HOJE"
+                           TextColor="{StaticResource fundo_form}"
+                           FontSize="Subtitle"
+                           FontAttributes="Bold"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </StackLayout>
+            </Frame>
+            <Frame HasShadow="True"
+                   BackgroundColor="{StaticResource laranja_lb}"
+                   CornerRadius="10"
+                   Margin="5"
+                   Padding="5"
+                   Visual="Material"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"
+                   Grid.Column="1">
+                <StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PedidoOntemCommand}"/>
+                    </StackLayout.GestureRecognizers>
+                    <Label Text="PEDIDOS ONTEM"
+                           TextColor="{StaticResource fundo_form}"
+                           FontSize="Subtitle"
+                           FontAttributes="Bold"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </StackLayout>
+            </Frame>
+            <Frame HasShadow="True"
+                   BackgroundColor="{StaticResource laranja_lb}"
+                   CornerRadius="10"
+                   Margin="5"
+                   Padding="5"
+                   Visual="Material"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"
+                   Grid.Row="1">
+                <StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PedidoFimSemanaCommand}"/>
+                    </StackLayout.GestureRecognizers>
+                    <Label Text="FINAIS SEMANA"
+                           TextColor="{StaticResource fundo_form}"
+                           FontSize="Subtitle"
+                           FontAttributes="Bold"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </StackLayout>
+            </Frame>
+            <Frame HasShadow="True"
+                   BackgroundColor="{StaticResource laranja_lb}"
+                   CornerRadius="10"
+                   Margin="5"
+                   Padding="5"
+                   Visual="Material"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"
+                   Grid.Row="1"
+                   Grid.Column="1">
+                <StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PedidoOutrosDiasCommand}"/>
+                    </StackLayout.GestureRecognizers>
+                    <Label Text="OUTROS DIAS"
+                           TextColor="{StaticResource fundo_form}"
+                           FontSize="Subtitle"
+                           FontAttributes="Bold"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </StackLayout>
+            </Frame>
+            <Frame HasShadow="True"
+                   BackgroundColor="{StaticResource laranja_lb}"
+                   CornerRadius="10"
+                   Margin="5"
+                   Padding="5"
+                   Visual="Material"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"
+                   Grid.Row="2">
+                <StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding EvolucaoMesCommand}"/>
+                    </StackLayout.GestureRecognizers>
+                    <Label Text="EVOLUÇÃO MÊS"
+                           TextColor="{StaticResource fundo_form}"
+                           FontSize="Subtitle"
+                           FontAttributes="Bold"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </StackLayout>
+            </Frame>
+            <Frame HasShadow="True"
+                   BackgroundColor="{StaticResource laranja_lb}"
+                   CornerRadius="10"
+                   Margin="5"
+                   Padding="5"
+                   Visual="Material"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"
+                   Grid.Row="2"
+                   Grid.Column="1">
+                <StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding EvolucaoAnoCommand}"/>
+                    </StackLayout.GestureRecognizers>
+                    <Label Text="EVOLUÇÃO ULTIMOS TRÊS ANOS"
+                           TextColor="{StaticResource fundo_form}"
+                           FontSize="Subtitle"
+                           FontAttributes="Bold"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </Frame>
+</ContentPage>

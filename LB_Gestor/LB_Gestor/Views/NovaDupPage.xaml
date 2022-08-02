@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:converterPack="clr-namespace:Xamarin.Forms.ConvertersPack;assembly=Xamarin.Forms.ConvertersPack" 
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="LB_Gestor.Views.NovaDupPage"
+             Visual="Material"
+             Title="NOVA DUPLICATA"
+             BackgroundColor="{StaticResource Key=preto_lb}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converterPack:CurrencyConverter x:Key="CurrencyConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Frame HasShadow="True"
+           BackgroundColor="{StaticResource Key=fundo_form}"
+           CornerRadius="5"
+           Margin="5"
+           Padding="5"
+           HorizontalOptions="FillAndExpand"
+           VerticalOptions="CenterAndExpand">
+        <StackLayout Orientation="Vertical">
+            <StackLayout HorizontalOptions="FillAndExpand">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BuscarClienteCommand}"/>
+                </StackLayout.GestureRecognizers>
+                <Entry x:Name="txtCliente"
+                       TextColor="{StaticResource Key=preto_lb}"
+                       BackgroundColor="{StaticResource Key=fundo_form}"
+                       InputTransparent="True"
+                       Placeholder="Cliente"
+                       HorizontalOptions="FillAndExpand"
+                       IsReadOnly="True"
+                       Text="{Binding Cliente.Nm_clifor}"/>
+            </StackLayout>
+            <Grid ColumnDefinitions="*,*">
+                <Picker x:Name="pkTpDuplicata"
+                        Title="Tipo Duplicata"
+                        FontSize="16"
+                        HorizontalOptions="FillAndExpand"
+                        BackgroundColor="{StaticResource Key=fundo_form}"
+                        ItemsSource="{Binding Movs}"
+                        ItemDisplayBinding="{Binding Valor}"
+                        SelectedItem="{Binding MovCorrente}"/>
+                <Entry TextColor="{StaticResource Key=preto_lb}"
+                       BackgroundColor="{StaticResource Key=fundo_form}"
+                       Placeholder="Nº Documento"
+                       HorizontalOptions="FillAndExpand"
+                       Grid.Column="1"
+                       Text="{Binding Duplicata.Nr_docto}"/>
+            </Grid>
+            <Picker x:Name="pkHistorico"
+                        Title="histórico"
+                        FontSize="16"
+                        HorizontalOptions="FillAndExpand"
+                        BackgroundColor="{StaticResource Key=fundo_form}"
+                        ItemsSource="{Binding Historicos}"
+                        ItemDisplayBinding="{Binding Ds_historico}"
+                        SelectedItem="{Binding HistCorrente}"/>
+            <Picker x:Name="pkPlanoConta"
+                        Title="Plano Conta"
+                        FontSize="16"
+                        HorizontalOptions="FillAndExpand"
+                        BackgroundColor="{StaticResource Key=fundo_form}"
+                        ItemsSource="{Binding PlanoContas}"
+                        ItemDisplayBinding="{Binding Ds_conta}"
+                        SelectedItem="{Binding ContaCorrente}"/>
+            <Grid ColumnDefinitions="*,*"
+                  RowDefinitions="Auto,Auto">
+                <StackLayout Orientation="Vertical">
+                    <Label Text="Emissão"
+                           TextColor="Gray"
+                           FontSize="Caption"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Start"
+                           VerticalTextAlignment="Start"/>
+                    <DatePicker Format="dd/MM/yyyy"
+                                FontSize="Caption"
+                                BackgroundColor="{StaticResource Key=fundo_form}"
+                                HorizontalOptions="FillAndExpand"
+                                Date="{Binding Duplicata.Dt_emissao}"/>
+                </StackLayout>
+                <StackLayout Orientation="Vertical"
+                             Grid.Column="1">
+                    <Label Text="Vencimento"
+                           TextColor="Gray"
+                           FontSize="Caption"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Start"
+                           VerticalTextAlignment="Start"/>
+                    <DatePicker Format="dd/MM/yyyy"
+                                FontSize="Caption"
+                                BackgroundColor="{StaticResource Key=fundo_form}"
+                                HorizontalOptions="FillAndExpand"
+                                Date="{Binding Duplicata.Dt_vencto}"/>
+                </StackLayout>
+                <Entry Text="{Binding Duplicata.Vl_parcela, Converter={StaticResource CurrencyConverter}}"
+                        BackgroundColor="{StaticResource Key=fundo_form}"
+                        Placeholder="Valor Duplicata"
+                        Keyboard="Numeric"
+                        Margin="10"
+                        FontSize="18"
+                       Grid.Row="1"
+                        FontAttributes="Bold"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        HorizontalTextAlignment="End"
+                        VerticalTextAlignment="Center"/>
+                <Button Text="SALVAR"
+                        ImageSource="save.png"
+                        BackgroundColor="{StaticResource Key=laranja_lb}"
+                        FontAttributes="Bold"
+                        CornerRadius="10"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Command="{Binding SalvarCommand}"/>
+            </Grid>
+        </StackLayout>
+    </Frame>
+</ContentPage>

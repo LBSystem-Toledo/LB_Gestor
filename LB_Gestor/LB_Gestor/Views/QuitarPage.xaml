@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:converterPack="clr-namespace:Xamarin.Forms.ConvertersPack;assembly=Xamarin.Forms.ConvertersPack" 
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="LB_Gestor.Views.QuitarPage"
+             Visual="Material"
+             Title="QUITAR DUPLICATA"
+             BackgroundColor="{StaticResource Key=preto_lb}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converterPack:CurrencyConverter x:Key="CurrencyConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Frame HasShadow="True"
+           BackgroundColor="{StaticResource Key=fundo_form}"
+           CornerRadius="5"
+           Margin="5"
+           Padding="5"
+           HorizontalOptions="FillAndExpand"
+           VerticalOptions="CenterAndExpand">
+        <StackLayout Orientation="Vertical">
+            <Frame HasShadow="True"
+                   BackgroundColor="{StaticResource Key=fundo_form}"
+                   BorderColor="{StaticResource Key=laranja_lb}"
+                   CornerRadius="5"
+                   Margin="0"
+                   Padding="0"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand">
+                <StackLayout Orientation="Vertical"
+                             Padding="5">
+                    <Label Text="{Binding Duplicata.Nm_clifor}"
+                           TextColor="{StaticResource Key=preto_lb}"
+                           FontSize="Body"
+                           FontAttributes="Bold"
+                           HorizontalOptions="StartAndExpand"
+                           HorizontalTextAlignment="Start"
+                           VerticalTextAlignment="Center"/>
+                    <Grid ColumnDefinitions="*,*,*">
+                        <StackLayout Orientation="Vertical"
+                                     HorizontalOptions="FillAndExpand"
+                                     VerticalOptions="Fill">
+                            <Label Text="Emissão"
+                                   TextColor="Gray"
+                                   FontSize="10"
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Start"
+                                   VerticalTextAlignment="Center"/>
+                            <Label Text="{Binding Duplicata.Dt_emissao, StringFormat='{0:dd/MM/yyyy}'}"
+                                   TextColor="{StaticResource Key=preto_lb}"
+                                   FontSize="14"
+                                   HorizontalTextAlignment="Start"
+                                   VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical"
+                                     HorizontalOptions="FillAndExpand"
+                                     VerticalOptions="Fill"
+                                     Grid.Column="1">
+                            <Label Text="Vencimento"
+                                   TextColor="Gray"
+                                   FontSize="10"
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Start"
+                                   VerticalTextAlignment="Center"/>
+                            <Label Text="{Binding Duplicata.Dt_vencto, StringFormat='{0:dd/MM/yyyy}'}"
+                                   TextColor="{StaticResource Key=preto_lb}"
+                                   FontSize="14"
+                                   HorizontalTextAlignment="Start"
+                                   VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical"
+                                     HorizontalOptions="FillAndExpand"
+                                     VerticalOptions="Fill"
+                                     Grid.Column="2">
+                            <Label Text="Vl. Atual"
+                                   TextColor="Gray"
+                                   FontSize="10"
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Start"
+                                   VerticalTextAlignment="Center"/>
+                            <Label Text="{Binding Duplicata.Vl_atual, StringFormat='{0:N2}'}"
+                                   TextColor="{StaticResource Key=preto_lb}"
+                                   FontSize="14"
+                                   HorizontalTextAlignment="Start"
+                                   VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+            </Frame>
+            <Picker x:Name="pkPagamento"
+                    Title="SELECIONE PORTADOR"
+                    FontSize="16"
+                    TitleColor="LightSlateGray"
+                    BackgroundColor="{StaticResource Key=fundo_form}"
+                    VerticalOptions="Center"
+                    HorizontalOptions="FillAndExpand"
+                    Visual="Material"
+                    ItemsSource="{Binding Portadores}"
+                    ItemDisplayBinding="{Binding Ds_portador}"
+                    SelectedItem="{Binding Portador}"/>
+            <Picker x:Name="pkConta"
+                    Title="SELECIONE CONTA"
+                    FontSize="16"
+                    TitleColor="LightSlateGray"
+                    BackgroundColor="{StaticResource Key=fundo_form}"
+                    VerticalOptions="Center"
+                    HorizontalOptions="FillAndExpand"
+                    Visual="Material"
+                    ItemsSource="{Binding Contas}"
+                    ItemDisplayBinding="{Binding Ds_contager}"
+                    SelectedItem="{Binding Conta}"/>
+            <Grid ColumnDefinitions="*,*">
+                <Entry Text="{Binding Duplicata.Vl_quitar, Converter={StaticResource CurrencyConverter}}"
+                       BackgroundColor="{StaticResource Key=fundo_form}"
+                       Placeholder="Vl. Quitar"
+                       Keyboard="Numeric"
+                       Margin="10"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       HorizontalOptions="FillAndExpand"
+                       VerticalOptions="FillAndExpand"
+                       HorizontalTextAlignment="End"
+                       VerticalTextAlignment="Center"/>
+                <Entry Text="{Binding Duplicata.Vl_desconto, Converter={StaticResource CurrencyConverter}}"
+                       BackgroundColor="{StaticResource Key=fundo_form}"
+                       Placeholder="Desconto"
+                       Keyboard="Numeric"
+                       Margin="10"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       Grid.Column="1"
+                       HorizontalOptions="FillAndExpand"
+                       VerticalOptions="FillAndExpand"
+                       HorizontalTextAlignment="End"
+                       VerticalTextAlignment="Center"/>
+            </Grid>
+            <Button x:Name="btnConfirmar"
+                    Text="COFIRMAR"
+                    HeightRequest="60"
+                    BackgroundColor="{StaticResource Key=laranja_lb}"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    CornerRadius="10"
+                    Command="{Binding ConfirmarCommand}"/>
+        </StackLayout>
+    </Frame>
+</ContentPage>

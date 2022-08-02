@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:local="clr-namespace:LB_Gestor"
+             xmlns:tk="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:dxc="http://schemas.devexpress.com/xamarin/2014/forms/charts"
+             xmlns:dxg="http://schemas.devexpress.com/xamarin/2014/forms/datagrid"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="LB_Gestor.Views.FluxoCaixaPage"
+             Title="FLUXO CAIXA"
+             Visual="Material"
+             BackgroundColor="{StaticResource Key=preto_lb}">
+    <Frame HasShadow="True"
+           BackgroundColor="{StaticResource Key=fundo_form}"
+           CornerRadius="5"
+           Margin="10,0,10,0"
+           Padding="5"
+           HorizontalOptions="FillAndExpand"
+           VerticalOptions="FillAndExpand">
+        <Grid RowDefinitions="Auto,*">
+            <Frame HasShadow="True"
+                   BackgroundColor="{StaticResource Key=laranja_lb}"
+                   CornerRadius="5"
+                   Margin="0"
+                   Padding="0">
+                <StackLayout Orientation="Horizontal"
+                             Padding="5">
+                    <Label Text="Data Final"
+                           TextColor="White"
+                           FontSize="Large"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Start"
+                           VerticalTextAlignment="Center"/>
+                    <DatePicker x:Name="dtFinal" 
+                                Format="dd/MM/yyyy"
+                                FontSize="Medium"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="Center"
+                                BackgroundColor="{StaticResource Key=laranja_lb}"
+                                Date="{Binding DtFluxo}"/>
+                </StackLayout>
+            </Frame>
+            <tk:TabView TabStripPlacement="Bottom" 
+                        TabStripBackgroundColor="LightGray"
+                        TabStripHeight="60"
+                        Grid.Row="1">
+                <tk:TabViewItem Icon="grafico.png"
+                                Text="GRAFICO"
+                                TextColor="{StaticResource Key=preto_lb}"
+                                TextColorSelected="{StaticResource Key=laranja_lb}"
+                                FontSize="12"
+                                FontSizeSelected="16">
+                    <dxc:ChartView Rotated="True">
+                        <dxc:ChartView.Series>
+                            <dxc:BarSeries DisplayName="{Binding GdpValueReceber.TituloSerie}">
+                                <dxc:BarSeries.Data>
+                                    <dxc:SeriesDataAdapter DataSource="{Binding GdpValueReceber.Values}"
+                                                           ArgumentDataMember="Data">
+                                        <dxc:ValueDataMember Type="Value" Member="Valor"/>
+                                    </dxc:SeriesDataAdapter>
+                                </dxc:BarSeries.Data>
+                                <dxc:BarSeries.Style>
+                                    <dxc:BarSeriesStyle Fill="Blue"/>
+                                </dxc:BarSeries.Style>
+                                <dxc:BarSeries.Label>
+                                    <dxc:BarSeriesLabel Position="InsideTop"
+                                                        TextPattern="{}{V$#.##}"/>
+                                </dxc:BarSeries.Label>
+                            </dxc:BarSeries>
+                            <dxc:BarSeries DisplayName="{Binding GdpValuePagar.TituloSerie}">
+                                <dxc:BarSeries.Data>
+                                    <dxc:SeriesDataAdapter DataSource="{Binding GdpValuePagar.Values}"
+                                                           ArgumentDataMember="Data">
+                                        <dxc:ValueDataMember Type="Value" Member="Valor"/>
+                                    </dxc:SeriesDataAdapter>
+                                </dxc:BarSeries.Data>
+                                <dxc:BarSeries.Style>
+                                    <dxc:BarSeriesStyle Fill="Red"/>
+                                </dxc:BarSeries.Style>
+                                <dxc:BarSeries.Label>
+                                    <dxc:BarSeriesLabel Position="InsideTop"
+                                                        TextPattern="{}{V$#.##}"/>
+                                </dxc:BarSeries.Label>
+                            </dxc:BarSeries>
+                            <dxc:LineSeries DisplayName="{Binding GdpValueAcumulado.TituloSerie}"
+                                            MarkersVisible="True">
+                                <dxc:LineSeries.Data>
+                                    <dxc:SeriesDataAdapter DataSource="{Binding GdpValueAcumulado.Values}"
+                                                           ArgumentDataMember="Data">
+                                        <dxc:ValueDataMember Type="Value" Member="Valor"/>
+                                    </dxc:SeriesDataAdapter>
+                                </dxc:LineSeries.Data>
+                                <dxc:LineSeries.Label>
+                                    <dxc:MarkerSeriesLabel Angle="45"
+                                                           Indent="15"
+                                                           TextPattern="{}{V$#.##}">
+                                        <dxc:MarkerSeriesLabel.Style>
+                                            <dxc:SeriesLabelStyle>
+                                                <dxc:SeriesLabelStyle.TextStyle>
+                                                    <dxc:TextStyle Color="DarkBlue"
+                                                                   Size="10"/>
+                                                </dxc:SeriesLabelStyle.TextStyle>
+                                            </dxc:SeriesLabelStyle>
+                                        </dxc:MarkerSeriesLabel.Style>
+                                    </dxc:MarkerSeriesLabel>
+                                </dxc:LineSeries.Label>
+                                <dxc:LineSeries.Style>
+                                    <dxc:LineSeriesStyle MarkerSize="10"/>
+                                </dxc:LineSeries.Style>
+                            </dxc:LineSeries>
+                        </dxc:ChartView.Series>
+                        <dxc:ChartView.AxisX>
+                            <dxc:DateTimeAxisX GridAlignment="Day"
+                                               MeasureUnit="Day"
+                                               EmptyRangesVisible="False"
+                                               GridSpacing="3">
+                                <dxc:DateTimeAxisX.Label>
+                                    <dxc:AxisLabel TextFormat="d/M">
+                                        <dxc:AxisLabel.ResolveOverlappingOptions>
+                                            <dxc:AxisLabelResolveOverlappingOptions AllowHide="True"/>
+                                        </dxc:AxisLabel.ResolveOverlappingOptions>
+                                    </dxc:AxisLabel>
+                                </dxc:DateTimeAxisX.Label>
+                            </dxc:DateTimeAxisX>
+                        </dxc:ChartView.AxisX>
+                        <dxc:ChartView.AxisY>
+                            <dxc:NumericAxisY>
+                                <dxc:NumericAxisY.Title>
+                                    <dxc:AxisTitle Text="Valores R$">
+                                        <dxc:AxisTitle.Style>
+                                            <dxc:TitleStyle>
+                                                <dxc:TitleStyle.TextStyle>
+                                                    <dxc:TextStyle Size="16"/>
+                                                </dxc:TitleStyle.TextStyle>
+                                            </dxc:TitleStyle>
+                                        </dxc:AxisTitle.Style>
+                                    </dxc:AxisTitle>
+                                </dxc:NumericAxisY.Title>
+                                <dxc:NumericAxisY.Label>
+                                    <dxc:AxisLabel TextFormat="#.##" Position="Outside"/>
+                                </dxc:NumericAxisY.Label>
+                            </dxc:NumericAxisY>
+                        </dxc:ChartView.AxisY>
+                        <dxc:ChartView.Legend>
+                            <dxc:Legend VerticalPosition="TopOutside" 
+                    HorizontalPosition="Center" 
+                    Orientation="LeftToRight"/>
+                        </dxc:ChartView.Legend>
+                    </dxc:ChartView>
+                </tk:TabViewItem>
+                <tk:TabViewItem Icon="tabela.png"
+                                Text="TABELA"
+                                TextColor="{StaticResource Key=preto_lb}"
+                                TextColorSelected="{StaticResource Key=laranja_lb}"
+                                FontSize="12"
+                                FontSizeSelected="16">
+                    <dxg:DataGridView ItemsSource="{Binding FluxoCaixa}">
+                        <dxg:DataGridView.Columns>
+                            <dxg:DateColumn FieldName="Dt_vencto"
+                                            Caption="Data"
+                                            DisplayFormat="dd/MM/yyyy"
+                                            HeaderFontColor="{StaticResource Key=fundo_form}"
+                                            HeaderBackgroundColor="{StaticResource Key=preto_lb}">
+                            </dxg:DateColumn>
+                            <dxg:NumberColumn FieldName="Vl_receber"
+                                              Caption="Receber"
+                                              FontColor="Blue"
+                                              DisplayFormat="C2"
+                                              HeaderFontColor="{StaticResource Key=fundo_form}"
+                                              HeaderBackgroundColor="{StaticResource Key=preto_lb}"/>
+                            <dxg:NumberColumn FieldName="Vl_pagar"
+                                              Caption="Pagar"
+                                              FontColor="Red"
+                                              DisplayFormat="C2"
+                                              HeaderFontColor="{StaticResource Key=fundo_form}"
+                                              HeaderBackgroundColor="{StaticResource Key=preto_lb}"/>
+                            <dxg:NumberColumn FieldName="SaldoProjetado"
+                                              Caption="Saldo"
+                                              FontColor="Green"
+                                              DisplayFormat="C2"
+                                              HeaderFontColor="{StaticResource Key=fundo_form}"
+                                              HeaderBackgroundColor="{StaticResource Key=preto_lb}"/>
+                        </dxg:DataGridView.Columns>
+                    </dxg:DataGridView>
+                </tk:TabViewItem>
+            </tk:TabView>
+            
+        </Grid>
+    </Frame>
+</ContentPage>

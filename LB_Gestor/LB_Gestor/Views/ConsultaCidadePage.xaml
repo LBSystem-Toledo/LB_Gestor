@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:dxe="http://schemas.devexpress.com/xamarin/2014/forms/editors"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="LB_Gestor.Views.ConsultaCidadePage"
+             Title="CONSULTA CIDADES"
+             BackgroundColor="{StaticResource Key=preto_lb}">
+    <Frame HasShadow="True"
+           BackgroundColor="{StaticResource Key=fundo_form}"
+           CornerRadius="5"
+           Margin="5"
+           Padding="5"
+           HorizontalOptions="FillAndExpand"
+           VerticalOptions="Start">
+        <StackLayout Orientation="Vertical">
+            <Frame HasShadow="True"
+                   Margin="0"
+                   Padding="0"
+                   BackgroundColor="{StaticResource Key=fundo_form}"
+                   CornerRadius="5">
+                <Grid HorizontalOptions="FillAndExpand"
+                      VerticalOptions="FillAndExpand"
+                      Padding="2"
+                      ColumnDefinitions="*,60"
+                      RowDefinitions="Auto,Auto">
+                    <SearchBar x:Name="sbCidade"
+                               Grid.ColumnSpan="2"
+                               Placeholder="Localizar Cidade"
+                               HorizontalOptions="FillAndExpand"
+                               Text="{Binding Filtro}"
+                               SearchCommand="{Binding BuscarCommand}"/>
+                    <dxe:ComboBoxEdit ItemsSource="{Binding Ufs}"
+                                      IsFilterEnabled="True"
+                                      DisplayMember="Uf"
+                                      ValueMember="Uf"
+                                      Grid.Row="1"
+                                      SelectedItem="{Binding Ufcorrente}"
+                                      HorizontalOptions="FillAndExpand"/>
+                    <ImageButton Source="lupa.png"
+                                 Margin="5,5,5,5"
+                                 WidthRequest="50"
+                                 HeightRequest="50"
+                                 Aspect="AspectFit"
+                                 Grid.Column="1"
+                                 Grid.Row="1"
+                                 Command="{Binding BuscarCommand}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="Scale"
+                                                        Value="1" />
+                                        <Setter Property="BackgroundColor"
+                                                        Value="Transparent"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="Scale"
+                                                        Value="0.8" />
+                                        <Setter Property="BackgroundColor"
+                                                        Value="{StaticResource Key=laranja_lb}"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </ImageButton>
+                </Grid>
+            </Frame>
+            <CollectionView HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            SelectionMode="Single"
+                            ItemsSource="{Binding Cidades}"
+                            SelectedItem="{Binding CidadeCorrente}"
+                            SelectionChangedCommand="{Binding SelecionarCommand}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="20"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="*,50">
+                            <Label Text="{Binding Ds_cidade}"
+                                   TextColor="Black"
+                                   FontSize="14"
+                                   HorizontalTextAlignment="Start"
+                                   VerticalTextAlignment="Center"/>
+                            <Label Text="{Binding UF}"
+                                   TextColor="Black"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="Center"
+                                   Grid.Column="1"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </Frame>
+</ContentPage>

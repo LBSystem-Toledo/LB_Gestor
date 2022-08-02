@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:dxc="http://schemas.devexpress.com/xamarin/2014/forms/collectionview"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="LB_Gestor.Views.DashBoardEstoquePage"
+             Title="ESTOQUE"
+             Visual="Material"
+             BackgroundColor="{StaticResource preto_lb}">
+    <Frame HasShadow="True"
+           BackgroundColor="{StaticResource fundo_form}"
+           CornerRadius="5"
+           Margin="10,0,10,0"
+           Padding="5"
+           HorizontalOptions="FillAndExpand"
+           VerticalOptions="FillAndExpand">
+        <Grid RowDefinitions="Auto,*,*">
+            <Frame HasShadow="True"
+                   BackgroundColor="{StaticResource laranja_lb}"
+                   Margin="5"
+                   Padding="5,0,5,0"
+                   CornerRadius="5">
+                <StackLayout Orientation="Vertical">
+                    <Label Text="ESTOQUE ATUAL"
+                           FontSize="Large"
+                           TextColor="{StaticResource Key=colorAlterado}"
+                           FontAttributes="Bold"
+                           FontFamily="SANSATION_BOLD"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="Start"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                    <Label Text="{Binding Kpi.ValorEstoque, StringFormat='{0:C}'}"
+                           FontSize="Large"
+                           TextColor="{StaticResource Key=preto_lb}"
+                           FontAttributes="Bold"
+                           FontFamily="SANSATION_BOLD"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </StackLayout>
+            </Frame>
+            <Frame HasShadow="True"
+                   BackgroundColor="{StaticResource fundo_form}"
+                   Margin="5"
+                   Padding="5,0,5,0"
+                   CornerRadius="5"
+                   Grid.Row="1">
+                <StackLayout Orientation="Vertical">
+                    <Label Text="PRODUTOS ABAIXO MINIMO"
+                           FontSize="Body"
+                           BackgroundColor="{StaticResource preto_lb}"
+                           TextColor="{StaticResource Key=fundo_form}"
+                           FontAttributes="Bold"
+                           FontFamily="SANSATION_BOLD"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="Start"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                    <dxc:DXCollectionView HorizontalOptions="FillAndExpand"
+                                          VerticalOptions="FillAndExpand"
+                                          SelectionMode="Single"
+                                          Margin="5,0,5,0"
+                                          Grid.Row="1"
+                                          ItemsSource="{Binding ProdutosAbaixoMinimo}">
+                        <dxc:DXCollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame VerticalOptions="StartAndExpand"
+                                       HorizontalOptions="FillAndExpand"
+                                       BackgroundColor="{StaticResource fundo_form}"
+                                       CornerRadius="5"
+                                       HasShadow="True"
+                                       Padding="0,0,0,5">
+                                    <Grid VerticalOptions="StartAndExpand"
+                                          HorizontalOptions="FillAndExpand"
+                                          ColumnDefinitions="Auto,*,Auto,Auto">
+                                        <BoxView BackgroundColor="{StaticResource laranja_lb}"
+                                                 WidthRequest="3"
+                                                 HorizontalOptions="Start"
+                                                 VerticalOptions="FillAndExpand"/>
+                                        <StackLayout Orientation="Vertical"
+                                                     Grid.Column="1">
+                                            <Label Text="Produto"
+                                                   TextColor="{StaticResource colorAlterado}"
+                                                   FontSize="Caption"
+                                                   FontAttributes="Bold"
+                                                   HorizontalTextAlignment="Start"
+                                                   VerticalTextAlignment="Center"/>
+                                            <Label Text="{Binding Ds_produto}"
+                                                   TextColor="{StaticResource preto_lb}"
+                                                   FontSize="Caption"
+                                                   HorizontalTextAlignment="Start"
+                                                   VerticalTextAlignment="Center"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Vertical"
+                                                     Grid.Column="2">
+                                            <Label Text="Minimo"
+                                                   TextColor="{StaticResource colorAlterado}"
+                                                   FontSize="Caption"
+                                                   FontAttributes="Bold"
+                                                   HorizontalTextAlignment="Start"
+                                                   VerticalTextAlignment="Center"/>
+                                            <Label Text="{Binding Qt_min_estoque, StringFormat='{0:N3}'}"
+                                                   TextColor="{StaticResource preto_lb}"
+                                                   FontSize="Caption"
+                                                   HorizontalTextAlignment="Start"
+                                                   VerticalTextAlignment="Center"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Vertical"
+                                                     Grid.Column="3">
+                                            <Label Text="Saldo"
+                                                   TextColor="{StaticResource colorAlterado}"
+                                                   FontSize="Caption"
+                                                   FontAttributes="Bold"
+                                                   HorizontalTextAlignment="Start"
+                                                   VerticalTextAlignment="Center"/>
+                                            <Label Text="{Binding Tot_saldo,StringFormat='{0:N3}'}"
+                                                   TextColor="{StaticResource preto_lb}"
+                                                   FontSize="Caption"
+                                                   HorizontalTextAlignment="Start"
+                                                   VerticalTextAlignment="Center"/>
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </dxc:DXCollectionView.ItemTemplate>
+                    </dxc:DXCollectionView>
+                </StackLayout>
+            </Frame>
+            <Frame HasShadow="True"
+                   BackgroundColor="{StaticResource fundo_form}"
+                   Margin="5"
+                   Padding="5,0,5,0"
+                   CornerRadius="5"
+                   Grid.Row="2">
+                <StackLayout Orientation="Vertical">
+                    <Label Text="MARGEM LUCRO MENOR 20%"
+                           FontSize="Body"
+                           BackgroundColor="{StaticResource preto_lb}"
+                           TextColor="{StaticResource Key=fundo_form}"
+                           FontAttributes="Bold"
+                           FontFamily="SANSATION_BOLD"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="Start"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                    <dxc:DXCollectionView HorizontalOptions="FillAndExpand"
+                                          VerticalOptions="FillAndExpand"
+                                          SelectionMode="Single"
+                                          Margin="5,0,5,0"
+                                          Grid.Row="1"
+                                          ItemsSource="{Binding ProdutosAbaixoMargemLucro}">
+                        <dxc:DXCollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame VerticalOptions="StartAndExpand"
+                                       HorizontalOptions="FillAndExpand"
+                                       BackgroundColor="{StaticResource fundo_form}"
+                                       CornerRadius="5"
+                                       HasShadow="True"
+                                       Padding="0,0,0,5">
+                                    <Grid VerticalOptions="StartAndExpand"
+                                          HorizontalOptions="FillAndExpand"
+                                          ColumnDefinitions="Auto,*,Auto,Auto,Auto">
+                                        <BoxView BackgroundColor="{StaticResource laranja_lb}"
+                                                 WidthRequest="3"
+                                                 HorizontalOptions="Start"
+                                                 VerticalOptions="FillAndExpand"/>
+                                        <StackLayout Orientation="Vertical"
+                                                     Grid.Column="1">
+                                            <Label Text="Produto"
+                                                   TextColor="{StaticResource colorAlterado}"
+                                                   FontSize="Caption"
+                                                   FontAttributes="Bold"
+                                                   HorizontalTextAlignment="Start"
+                                                   VerticalTextAlignment="Center"/>
+                                            <Label Text="{Binding Ds_produto}"
+                                                   TextColor="{StaticResource preto_lb}"
+                                                   FontSize="Caption"
+                                                   HorizontalTextAlignment="Start"
+                                                   VerticalTextAlignment="Center"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Vertical"
+                                                     Grid.Column="2">
+                                            <Label Text="Compra"
+                                                   TextColor="{StaticResource colorAlterado}"
+                                                   FontSize="Caption"
+                                                   FontAttributes="Bold"
+                                                   HorizontalTextAlignment="Start"
+                                                   VerticalTextAlignment="Center"/>
+                                            <Label Text="{Binding UltimaCompra, StringFormat='{0:C}'}"
+                                                   TextColor="{StaticResource preto_lb}"
+                                                   FontSize="Caption"
+                                                   HorizontalTextAlignment="Start"
+                                                   VerticalTextAlignment="Center"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Vertical"
+                                                     Grid.Column="3">
+                                            <Label Text="Venda"
+                                                   TextColor="{StaticResource colorAlterado}"
+                                                   FontSize="Caption"
+                                                   FontAttributes="Bold"
+                                                   HorizontalTextAlignment="Start"
+                                                   VerticalTextAlignment="Center"/>
+                                            <Label Text="{Binding Vl_precovenda,StringFormat='{0:C}'}"
+                                                   TextColor="{StaticResource preto_lb}"
+                                                   FontSize="Caption"
+                                                   HorizontalTextAlignment="Start"
+                                                   VerticalTextAlignment="Center"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Vertical"
+                                                     Grid.Column="4">
+                                            <Label Text="Margem"
+                                                   TextColor="{StaticResource colorAlterado}"
+                                                   FontSize="Caption"
+                                                   FontAttributes="Bold"
+                                                   HorizontalTextAlignment="Start"
+                                                   VerticalTextAlignment="Center"/>
+                                            <Label TextColor="{StaticResource preto_lb}"
+                                                   FontSize="Caption"
+                                                   HorizontalTextAlignment="Start"
+                                                   VerticalTextAlignment="Center">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding Margem,StringFormat='{0:N2}'}"/>
+                                                        <Span Text="%"/>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </dxc:DXCollectionView.ItemTemplate>
+                        <dxc:DXCollectionView.GroupDescription>
+                            <dxc:GroupDescription FieldName="Ds_tabelapreco"/>
+                        </dxc:DXCollectionView.GroupDescription>
+                        <dxc:DXCollectionView.GroupHeaderTemplate>
+                            <DataTemplate>
+                                <Frame HasShadow="True"
+                                       BackgroundColor="{StaticResource laranja_lb}"
+                                       CornerRadius="5"
+                                       Margin="0"
+                                       Padding="0">
+                                    <StackLayout>
+                                        <Label FontSize="Subtitle"
+                                               TextColor="{StaticResource fundo_form}"
+                                               HorizontalOptions="FillAndExpand"
+                                               HorizontalTextAlignment="Center"
+                                               FontAttributes="Bold">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Tabela: "/>
+                                                    <Span Text="{Binding Value}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <BoxView BackgroundColor="AliceBlue"
+                                                 HeightRequest="1"/>
+                                    </StackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </dxc:DXCollectionView.GroupHeaderTemplate>
+                    </dxc:DXCollectionView>
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </Frame>
+</ContentPage>

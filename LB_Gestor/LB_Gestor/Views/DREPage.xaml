@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:tk="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:dxg="http://schemas.devexpress.com/xamarin/2014/forms/datagrid"
+             xmlns:cv="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="LB_Gestor.Views.DREPage"
+             Title="DRE"
+             Visual="Material"
+             BackgroundColor="{StaticResource Key=preto_lb}">
+    <Frame HasShadow="True"
+           BackgroundColor="{StaticResource Key=fundo_form}"
+           CornerRadius="5"
+           Margin="10,0,10,0"
+           Padding="5"
+           HorizontalOptions="FillAndExpand"
+           VerticalOptions="FillAndExpand">
+        <Grid RowDefinitions="Auto,*">
+            <Frame HasShadow="True"
+                   BackgroundColor="{StaticResource Key=laranja_lb}"
+                   CornerRadius="5"
+                   Margin="0"
+                   Padding="0">
+                <Picker Title="PERIODO"
+                        FontSize="18"
+                        TitleColor="LightSlateGray"
+                        BackgroundColor="{StaticResource Key=fundo_form}"
+                        VerticalOptions="Center"
+                        HorizontalOptions="FillAndExpand"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center"
+                        Visual="Material"
+                        ItemsSource="{Binding Anos}"
+                        ItemDisplayBinding="{Binding Chave}"
+                        SelectedItem="{Binding AnoCorrente}"/>
+            </Frame>
+            <tk:TabView TabStripPlacement="Bottom" 
+                        TabStripBackgroundColor="LightGray"
+                        TabStripHeight="60"
+                        Grid.Row="1">
+                <tk:TabViewItem Icon="tabela.png"
+                                Text="DRE"
+                                TextColor="{StaticResource Key=preto_lb}"
+                                TextColorSelected="{StaticResource Key=laranja_lb}"
+                                FontSize="12"
+                                FontSizeSelected="16">
+                    <dxg:DataGridView ItemsSource="{Binding DRE}">
+                        <dxg:DataGridView.Columns>
+                            <dxg:TextColumn FieldName="Ds_contaDRE"
+                                            Caption="Conta"
+                                            HeaderFontColor="{StaticResource Key=fundo_form}"
+                                            HeaderBackgroundColor="{StaticResource Key=preto_lb}">
+                            </dxg:TextColumn>
+                            <dxg:NumberColumn FieldName="Vl_janeiro"
+                                              Caption="Janeiro"
+                                              DisplayFormat="C2"
+                                              HeaderFontColor="{StaticResource Key=fundo_form}"
+                                              HeaderBackgroundColor="{StaticResource Key=preto_lb}"/>
+                            <dxg:NumberColumn FieldName="Vl_fevereiro"
+                                              Caption="Fevereiro"
+                                              DisplayFormat="C2"
+                                              HeaderFontColor="{StaticResource Key=fundo_form}"
+                                              HeaderBackgroundColor="{StaticResource Key=preto_lb}"/>
+                            <dxg:NumberColumn FieldName="Vl_marco"
+                                              Caption="Março"
+                                              DisplayFormat="C2"
+                                              HeaderFontColor="{StaticResource Key=fundo_form}"
+                                              HeaderBackgroundColor="{StaticResource Key=preto_lb}"/>
+                            <dxg:NumberColumn FieldName="Vl_abril"
+                                              Caption="Abril"
+                                              DisplayFormat="C2"
+                                              HeaderFontColor="{StaticResource Key=fundo_form}"
+                                              HeaderBackgroundColor="{StaticResource Key=preto_lb}"/>
+                            <dxg:NumberColumn FieldName="Vl_maio"
+                                              Caption="Maio"
+                                              DisplayFormat="C2"
+                                              HeaderFontColor="{StaticResource Key=fundo_form}"
+                                              HeaderBackgroundColor="{StaticResource Key=preto_lb}"/>
+                            <dxg:NumberColumn FieldName="Vl_junho"
+                                              Caption="Junho"
+                                              DisplayFormat="C2"
+                                              HeaderFontColor="{StaticResource Key=fundo_form}"
+                                              HeaderBackgroundColor="{StaticResource Key=preto_lb}"/>
+                            <dxg:NumberColumn FieldName="Vl_julho"
+                                              Caption="Julho"
+                                              DisplayFormat="C2"
+                                              HeaderFontColor="{StaticResource Key=fundo_form}"
+                                              HeaderBackgroundColor="{StaticResource Key=preto_lb}"/>
+                            <dxg:NumberColumn FieldName="Vl_agosto"
+                                              Caption="Agosto"
+                                              DisplayFormat="C2"
+                                              HeaderFontColor="{StaticResource Key=fundo_form}"
+                                              HeaderBackgroundColor="{StaticResource Key=preto_lb}"/>
+                            <dxg:NumberColumn FieldName="Vl_setembro"
+                                              Caption="Setembro"
+                                              DisplayFormat="C2"
+                                              HeaderFontColor="{StaticResource Key=fundo_form}"
+                                              HeaderBackgroundColor="{StaticResource Key=preto_lb}"/>
+                            <dxg:NumberColumn FieldName="Vl_outubro"
+                                              Caption="Outubro"
+                                              DisplayFormat="C2"
+                                              HeaderFontColor="{StaticResource Key=fundo_form}"
+                                              HeaderBackgroundColor="{StaticResource Key=preto_lb}"/>
+                            <dxg:NumberColumn FieldName="Vl_novembro"
+                                              Caption="Novembro"
+                                              DisplayFormat="C2"
+                                              HeaderFontColor="{StaticResource Key=fundo_form}"
+                                              HeaderBackgroundColor="{StaticResource Key=preto_lb}"/>
+                            <dxg:NumberColumn FieldName="Vl_dezembro"
+                                              Caption="Dezembro"
+                                              DisplayFormat="C2"
+                                              HeaderFontColor="{StaticResource Key=fundo_form}"
+                                              HeaderBackgroundColor="{StaticResource Key=preto_lb}"/>
+                            <dxg:NumberColumn FieldName="Total_exercicio"
+                                              Caption="Resultado"
+                                              DisplayFormat="C2"
+                                              HeaderFontColor="{StaticResource Key=fundo_form}"
+                                              HeaderBackgroundColor="{StaticResource Key=preto_lb}"/>
+                        </dxg:DataGridView.Columns>
+                    </dxg:DataGridView>
+                </tk:TabViewItem>
+                <tk:TabViewItem Icon="grafico.png"
+                                Text="GRAFICO"
+                                TextColor="{StaticResource Key=preto_lb}"
+                                TextColorSelected="{StaticResource Key=laranja_lb}"
+                                FontSize="12"
+                                FontSizeSelected="16">
+                    <cv:ChartView VerticalOptions="FillAndExpand"
+                                  HorizontalOptions="FillAndExpand"
+                                  Chart="{Binding ChartDRE}"
+                                  Grid.Row="1"/>
+                </tk:TabViewItem>
+            </tk:TabView>
+
+        </Grid>
+    </Frame>
+</ContentPage>

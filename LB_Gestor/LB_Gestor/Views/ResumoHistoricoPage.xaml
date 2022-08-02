@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:tk="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:cv="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="LB_Gestor.Views.ResumoHistoricoPage"
+             Title="COMPOSIÇÃO"
+             Visual="Material"
+             BackgroundColor="{StaticResource Key=preto_lb}">
+    <Frame HasShadow="True"
+            BackgroundColor="{StaticResource Key=fundo_form}"
+            CornerRadius="5"
+            Margin="10,0,10,0"
+            Padding="5"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+        <tk:TabView TabStripPlacement="Bottom"
+                    TabStripBackgroundColor="{StaticResource Key=laranja_lb}"
+                    TabStripHeight="40">
+            <tk:TabViewItem Text="Receitas"
+                            TextColor="{StaticResource Key=preto_lb}"
+                            TextColorSelected="{StaticResource Key=fundo_form}"
+                            FontSize="12">
+                <Frame HasShadow="True"
+                       BackgroundColor="{StaticResource Key=fundo_form}"
+                       CornerRadius="5"
+                       Padding="0"
+                       HorizontalOptions="FillAndExpand"
+                       VerticalOptions="FillAndExpand">
+                    <cv:ChartView VerticalOptions="FillAndExpand"
+                                  HorizontalOptions="FillAndExpand"
+                                  Chart="{Binding ChartReceita}"/>
+                </Frame>
+            </tk:TabViewItem>
+            <tk:TabViewItem Text="Despesas"
+                            TextColor="{StaticResource Key=preto_lb}"
+                            TextColorSelected="{StaticResource Key=fundo_form}"
+                            FontSize="12">
+                <Frame HasShadow="True"
+                       BackgroundColor="{StaticResource Key=fundo_form}"
+                       CornerRadius="5"
+                       Padding="0"
+                       HorizontalOptions="FillAndExpand"
+                       VerticalOptions="FillAndExpand">
+                    <cv:ChartView VerticalOptions="FillAndExpand"
+                                  HorizontalOptions="FillAndExpand"
+                                  Chart="{Binding ChartDespesa}"/>
+                </Frame>
+            </tk:TabViewItem>
+        </tk:TabView>
+    </Frame>
+</ContentPage>

@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:cv="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="LB_Gestor.Views.KPIFaturamentoPage"
+             Visual="Material"
+             Title="KPI Vendas"
+             BackgroundColor="{StaticResource Key=preto_lb}">
+    <Frame HasShadow="True"
+           BackgroundColor="{StaticResource Key=fundo_form}"
+           CornerRadius="5"
+           Margin="5"
+           Padding="5"
+           HorizontalOptions="FillAndExpand"
+           VerticalOptions="FillAndExpand">
+        <Grid ColumnDefinitions="*,*"
+              RowDefinitions="*,*,*,*,*">
+            <Frame HasShadow="True"
+                   BackgroundColor="{StaticResource Key=fundo_form}"
+                   CornerRadius="5"
+                   Margin="0"
+                   Padding="0"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand">
+                <StackLayout Orientation="Vertical"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="FillAndExpand">
+                    <Label Text="Vendas Ontem"
+                           FontSize="Medium"
+                           TextColor="{StaticResource Key=fundo_form}"
+                           BackgroundColor="{StaticResource Key=laranja_lb}"
+                           FontAttributes="Bold"
+                           FontFamily="SANSATION_BOLD"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="Start"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                    <Label Text="{Binding Kpi.VendasOntem, StringFormat='{0:C}'}"
+                           FontSize="Large"
+                           TextColor="{StaticResource Key=preto_lb}"
+                           FontAttributes="Bold"
+                           FontFamily="SANSATION_BOLD"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </StackLayout>
+            </Frame>
+            <Frame HasShadow="True"
+                   BackgroundColor="{StaticResource Key=fundo_form}"
+                   CornerRadius="5"
+                   Margin="0"
+                   Padding="0"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"
+                   Grid.Column="1">
+                <StackLayout Orientation="Vertical"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="FillAndExpand">
+                    <Label Text="Vendas Hoje"
+                           FontSize="Medium"
+                           TextColor="{StaticResource Key=fundo_form}"
+                           BackgroundColor="{StaticResource Key=laranja_lb}"
+                           FontAttributes="Bold"
+                           FontFamily="SANSATION_BOLD"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="Start"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                    <Label Text="{Binding Kpi.VendasHoje, StringFormat='{0:C}'}"
+                           FontSize="Large"
+                           TextColor="{StaticResource Key=preto_lb}"
+                           FontAttributes="Bold"
+                           FontFamily="SANSATION_BOLD"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </StackLayout>
+            </Frame>
+            <Frame HasShadow="True"
+                   BackgroundColor="{StaticResource Key=fundo_form}"
+                   CornerRadius="5"
+                   Margin="0"
+                   Padding="0"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"
+                   Grid.Row="1">
+                <StackLayout Orientation="Vertical"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="FillAndExpand">
+                    <Label Text="Vendas Semana"
+                           FontSize="Medium"
+                           TextColor="{StaticResource Key=fundo_form}"
+                           BackgroundColor="{StaticResource Key=laranja_lb}"
+                           FontAttributes="Bold"
+                           FontFamily="SANSATION_BOLD"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="Start"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                    <Label Text="{Binding Kpi.AcumuladoSemana, StringFormat='{0:C}'}"
+                           FontSize="Large"
+                           TextColor="{StaticResource Key=preto_lb}"
+                           FontAttributes="Bold"
+                           FontFamily="SANSATION_BOLD"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </StackLayout>
+            </Frame>
+            <Frame HasShadow="True"
+                   BackgroundColor="{StaticResource Key=fundo_form}"
+                   CornerRadius="5"
+                   Margin="0"
+                   Padding="0"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"
+                   Grid.Row="1"
+                   Grid.Column="1">
+                <StackLayout Orientation="Vertical"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="FillAndExpand">
+                    <Label Text="Vendas Mês"
+                           FontSize="Medium"
+                           TextColor="{StaticResource Key=fundo_form}"
+                           BackgroundColor="{StaticResource Key=laranja_lb}"
+                           FontAttributes="Bold"
+                           FontFamily="SANSATION_BOLD"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="Start"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                    <Label Text="{Binding Kpi.AcumuladoMes, StringFormat='{0:C}'}"
+                           FontSize="Large"
+                           TextColor="{StaticResource Key=preto_lb}"
+                           FontAttributes="Bold"
+                           FontFamily="SANSATION_BOLD"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </StackLayout>
+            </Frame>
+            <Frame HasShadow="True"
+                   BackgroundColor="{StaticResource Key=fundo_form}"
+                   CornerRadius="5"
+                   Margin="0"
+                   Padding="0"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"
+                   Grid.Row="2">
+                <StackLayout Orientation="Vertical"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="FillAndExpand">
+                    <Label Text="Fiscal Mês"
+                           FontSize="Medium"
+                           TextColor="{StaticResource Key=fundo_form}"
+                           BackgroundColor="{StaticResource Key=laranja_lb}"
+                           FontAttributes="Bold"
+                           FontFamily="SANSATION_BOLD"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="Start"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                    <Label Text="{Binding Kpi.VendaMesFiscal, StringFormat='{0:C}'}"
+                           FontSize="Large"
+                           TextColor="{StaticResource Key=preto_lb}"
+                           FontAttributes="Bold"
+                           FontFamily="SANSATION_BOLD"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </StackLayout>
+            </Frame>
+            <Frame HasShadow="True"
+                   BackgroundColor="{StaticResource Key=fundo_form}"
+                   CornerRadius="5"
+                   Margin="0"
+                   Padding="0"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"
+                   Grid.Row="2"
+                   Grid.Column="1">
+                <StackLayout Orientation="Vertical"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="FillAndExpand">
+                    <Label Text="Não Fiscal Mês"
+                           FontSize="Medium"
+                           TextColor="{StaticResource Key=fundo_form}"
+                           BackgroundColor="{StaticResource Key=laranja_lb}"
+                           FontAttributes="Bold"
+                           FontFamily="SANSATION_BOLD"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="Start"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                    <Label Text="{Binding Kpi.VendaMesNaoFiscal, StringFormat='{0:C}'}"
+                           FontSize="Large"
+                           TextColor="{StaticResource Key=preto_lb}"
+                           FontAttributes="Bold"
+                           FontFamily="SANSATION_BOLD"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </StackLayout>
+            </Frame>
+            <Frame HasShadow="True"
+                   BackgroundColor="{StaticResource Key=fundo_form}"
+                   CornerRadius="5"
+                   Margin="0"
+                   Padding="0"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"
+                   Grid.Row="3">
+                <StackLayout Orientation="Vertical"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="FillAndExpand">
+                    <Label Text="% Fiscal"
+                           FontSize="Medium"
+                           TextColor="{StaticResource Key=fundo_form}"
+                           BackgroundColor="{StaticResource Key=laranja_lb}"
+                           FontAttributes="Bold"
+                           FontFamily="SANSATION_BOLD"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="Start"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                    <Label FontSize="Large"
+                           TextColor="{StaticResource Key=preto_lb}"
+                           FontAttributes="Bold"
+                           FontFamily="SANSATION_BOLD"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Kpi.MargemFiscal, StringFormat='{0:N2}'}"/>
+                                <Span Text=" %"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+            </Frame>
+            <Frame HasShadow="True"
+                   BackgroundColor="{StaticResource Key=fundo_form}"
+                   CornerRadius="5"
+                   Margin="0"
+                   Padding="0"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"
+                   Grid.Row="3"
+                   Grid.Column="1">
+                <StackLayout Orientation="Vertical"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="FillAndExpand">
+                    <Label Text="CMV Mês"
+                           FontSize="Medium"
+                           TextColor="{StaticResource Key=fundo_form}"
+                           BackgroundColor="{StaticResource Key=laranja_lb}"
+                           FontAttributes="Bold"
+                           FontFamily="SANSATION_BOLD"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="Start"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                    <Label Text="{Binding Kpi.CmvMes, StringFormat='{0:C}'}"
+                           FontSize="Large"
+                           TextColor="{StaticResource Key=preto_lb}"
+                           FontAttributes="Bold"
+                           FontFamily="SANSATION_BOLD"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </StackLayout>
+            </Frame>
+            <Frame HasShadow="True"
+                   BackgroundColor="{StaticResource Key=fundo_form}"
+                   CornerRadius="5"
+                   Margin="0"
+                   Padding="0"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"
+                   Grid.Row="4">
+                <StackLayout Orientation="Vertical"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="FillAndExpand">
+                    <Label Text="Lucro Bruto Mês"
+                           FontSize="Medium"
+                           TextColor="{StaticResource Key=fundo_form}"
+                           BackgroundColor="{StaticResource Key=laranja_lb}"
+                           FontAttributes="Bold"
+                           FontFamily="SANSATION_BOLD"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="Start"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                    <Label Text="{Binding Kpi.LucroBrutoMes, StringFormat='{0:C}'}"
+                           FontSize="Large"
+                           TextColor="{StaticResource Key=preto_lb}"
+                           FontAttributes="Bold"
+                           FontFamily="SANSATION_BOLD"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </StackLayout>
+            </Frame>
+            <Frame HasShadow="True"
+                   BackgroundColor="{StaticResource Key=fundo_form}"
+                   CornerRadius="5"
+                   Margin="0"
+                   Padding="0"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"
+                   Grid.Row="4"
+                   Grid.Column="1">
+                <StackLayout Orientation="Vertical"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="FillAndExpand">
+                    <Label Text="% Lucro Mês"
+                           FontSize="Medium"
+                           TextColor="{StaticResource Key=fundo_form}"
+                           BackgroundColor="{StaticResource Key=laranja_lb}"
+                           FontAttributes="Bold"
+                           FontFamily="SANSATION_BOLD"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="Start"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                    <Label FontSize="Large"
+                           TextColor="{StaticResource Key=preto_lb}"
+                           FontAttributes="Bold"
+                           FontFamily="SANSATION_BOLD"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Kpi.MargemBrutaMes, StringFormat='{0:N2}'}"/>
+                                <Span Text=" %"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </Frame>
+</ContentPage>
